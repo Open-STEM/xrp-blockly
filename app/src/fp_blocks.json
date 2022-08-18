@@ -1,0 +1,219 @@
+[
+    {
+        "type": "fp_encoder",
+        "message0": "Encoder: %1 %2 %3 Reversed? %4",
+        "args0": [
+            {
+                "type": "field_input",
+                "name": "NAME",
+                "text": "myEncoder"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "PIN_A",
+                "options": [
+                    [
+                        "GP2",
+                        "GP2"
+                    ],
+                    [
+                        "GP3",
+                        "GP3"
+                    ],
+                    [
+                        "GP4",
+                        "GP4"
+                    ],
+                    [
+                        "GP5",
+                        "GP5"
+                    ]
+                ]
+            },
+            {
+                "type": "field_dropdown",
+                "name": "PIN_B",
+                "options": [
+                    [
+                        "GP2",
+                        "GP2"
+                    ],
+                    [
+                        "GP3",
+                        "GP3"
+                    ],
+                    [
+                        "GP4",
+                        "GP4"
+                    ],
+                    [
+                        "GP5",
+                        "GP5"
+                    ]
+                ]
+            },
+            {
+                "type": "field_checkbox",
+                "name": "REVERSE",
+                "checked": false
+            }
+        ],
+        "output": null,
+        "colour": 65,
+        "tooltip": "",
+        "helpUrl": ""
+    },
+    {
+        "type": "fp_motor",
+        "message0": "Motor: %1 %2 %3 Reversed? %4 %5 Encoder %6",
+        "args0": [
+            {
+                "type": "field_input",
+                "name": "NAME",
+                "text": "myMotor"
+            },
+            {
+                "type": "field_dropdown",
+                "name": "PIN_A",
+                "options": [
+                    [
+                        "GP8",
+                        "GP8"
+                    ],
+                    [
+                        "GP9",
+                        "GP9"
+                    ],
+                    [
+                        "GP10",
+                        "GP10"
+                    ],
+                    [
+                        "GP11",
+                        "GP11"
+                    ]
+                ]
+            },
+            {
+                "type": "field_dropdown",
+                "name": "PIN_B",
+                "options": [
+                    [
+                        "GP8",
+                        "GP8"
+                    ],
+                    [
+                        "GP9",
+                        "GP9"
+                    ],
+                    [
+                        "GP10",
+                        "GP10"
+                    ],
+                    [
+                        "GP11",
+                        "GP11"
+                    ]
+                ]
+            },
+            {
+                "type": "field_checkbox",
+                "name": "REVERSED",
+                "checked": false
+            },
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_value",
+                "name": "ENCODER",
+                "check": "fp_encoder",
+                "align": "RIGHT"
+            }
+        ],
+        "output": null,
+        "colour": 330,
+        "tooltip": "Add encoder block",
+        "helpUrl": ""
+    },
+    {
+        "type": "fp_drivebase",
+        "message0": "Drivebase: %1 %2 Motor 1 %3 Motor 2 %4",
+        "args0": [
+            {
+                "type": "field_input",
+                "name": "NAME",
+                "text": "myDrivebase"
+            },
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_value",
+                "name": "MOTOR_1",
+                "check": "fp_motor",
+                "align": "RIGHT"
+            },
+            {
+                "type": "input_value",
+                "name": "MOTOR_2",
+                "check": "fp_motor",
+                "align": "RIGHT"
+            }
+        ],
+        "output": null,
+        "colour": 210,
+        "tooltip": "",
+        "helpUrl": ""
+    },
+    {
+        "type": "fp_drivebase_effort",
+        "message0": "Set Effort %1 Effort 1: %2 Effort 2: %3 %4 Drivebase: %5",
+        "args0": [
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "field_number",
+                "name": "EFFORT1",
+                "value": 0,
+                "min": -1,
+                "max": 1
+            },
+            {
+                "type": "field_number",
+                "name": "EFFORT2",
+                "value": 0,
+                "min": -1,
+                "max": 1
+            },
+            {
+                "type": "input_dummy"
+            },
+            {
+                "type": "input_value",
+                "name": "DRIVEBASE",
+                "check": "fp_drivebase",
+                "align": "RIGHT"
+            }
+        ],
+        "colour": 290,
+        "tooltip": "",
+        "helpUrl": ""
+    },
+    {
+        "type": "fp_getpos",
+        "message0": "Get Motor Position %1",
+        "args0": [
+            {
+                "type": "input_value",
+                "name": "NAME",
+                "check": "fp_motor"
+            }
+        ],
+        "output": null,
+        "colour": 230,
+        "tooltip": "",
+        "helpUrl": ""
+    }
+]
