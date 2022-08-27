@@ -1,3 +1,4 @@
+// const fs = require('fs');
 // var blocklyArea = document.getElementById('blocklyArea');
 var blocklyDiv = document.getElementById('blocklyDiv');
 var workspace = Blockly.inject(blocklyDiv,
@@ -41,6 +42,12 @@ function myUpdateFunction(event) {
     document.getElementById('codeLine').innerHTML = processCode(code);
 }
 workspace.addChangeListener(myUpdateFunction);
+
+let saveButton = document.getElementById("save");
+saveButton.addEventListener("click", () => {
+    let outputCode = document.getElementById("codeLine").innerHTML;
+    window.api.send("save-code", outputCode);
+});
 
 
 /* Code Cleaning and Formatting */

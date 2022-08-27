@@ -2,7 +2,8 @@
 
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
-const path = require('path')
+const path = require('path');
+const fs = require('fs');
 
 let mainWindow;
 
@@ -15,7 +16,7 @@ createWindow = () => {
       preload: path.join(__dirname, 'preload.js')
     },
     sandbox: false,
-    contextIsolation: false,
+    contextIsolation: true,
     show: false,
     nodeIntegration: true
   })
@@ -54,23 +55,8 @@ app.on('window-all-closed', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-// export a function to save the code to a file via a save dialog
-// exports.saveCode = (code) => {
-//   const fs = require('fs');
-//   const path = require('path');
-//   const filePath = dialog.showSaveDialogSync({
-//     title: 'Save Code',
-//     defaultPath: 'code.py',
-//     filters: [{ name: 'Python', extensions: ['py'] }]
-//   });
-//   if (filePath) {
-//     fs.writeFileSync(filePath, code);
-//   }
-// }
-
 // Use ipc to receive text to save to a file using system save dialog
 ipcMain.on('save-code', (event, code) => {
-  const fs = require('fs');
   const filePath = dialog.showSaveDialogSync({
     title: 'Save Code',
     defaultPath: 'code.py',
