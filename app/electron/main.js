@@ -126,9 +126,9 @@ ipcMain.on('open-file', (event, code) => {
     // title: 'Open File',
     filters: [{ name: 'First+', extensions: ['fp'] }]
   });
- 
+
   if (filePath) {
-    let inputFile = fs.readFileSync(filePath[0]);
+    let inputFile = fs.readFileSync(filePath[0], { encoding: 'utf8' });
     console.log(inputFile);
   }
   // responseObj = "Saved Code";
