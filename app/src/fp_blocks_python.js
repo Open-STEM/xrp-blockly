@@ -76,7 +76,7 @@ Blockly.Python['fp_turn'] = function (block) {
 
 Blockly.Python['fp_getsonardist'] = function (block) {
   // TODO: Assemble Python into code variable.
-  var code = `sonar.distance\n`;
+  var code = `sonar.distance`;
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
