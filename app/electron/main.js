@@ -70,19 +70,22 @@ ipcMain.on('save-code', (event, req) => {
     let filePath = path.join(appState.fullPath, req.filename);
     fs.writeFileSync(filePath, req.content);
   } else {
-
+    handleSaveAs(req)
   }
-  // const filePath = dialog.showSaveDialogSync({
-  //   title: 'Save Code',
-  //   defaultPath: 'code.py',
-  //   filters: [{ name: 'Python', extensions: ['py'] }]
-  // });
-  // if (filePath) {
-  //   fs.writeFileSync("./code.py", code);
-  // }
   responseObj = "Saved Code";
   mainWindow.webContents.send("fromMain", responseObj);
 });
+
+function handleSaveAs(req) {
+  const filePath = dialog.showSaveDialogSync({
+    title: 'Save Code',
+    defaultPath: './code.py',
+    filters: [{ name: 'Python', extensions: ['py'] }]
+  });
+  if (filePath) {
+    fs.writeFileSync(path.join(filePath, req.filename), req.content);
+  }
+}
 
 // Upload Code
 ipcMain.on('upload-code', (event, code) => {
