@@ -9,9 +9,6 @@ const drivelist = require('drivelist');
 //   require('electron-reloader')(module);
 // } catch { }
 
-// Load app state
-let appState = JSON.parse(fs.readFileSync("./app/state.json"));
-
 let mainWindow;
 createWindow = () => {
   // Create the browser window.
@@ -43,7 +40,9 @@ createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  ipcMain.handle('load-appstate', () => appState);
+  ipcMain.handle('load-appstate', () => {
+    return JSON.parse(fs.readFileSync("./app/state.json"));
+  });
   createWindow()
 
   app.on('activate', () => {
@@ -66,25 +65,35 @@ app.on('window-all-closed', () => {
 /** APIs **/
 // Use ipc to receive text to save to a file using system save dialog
 ipcMain.on('save-code', (event, req) => {
+  const appState = JSON.parse(fs.readFileSync("./app/state.json"));
   if (appState.fullPath != "") {
     let filePath = path.join(appState.fullPath, req.filename);
     fs.writeFileSync(filePath, req.content);
   } else {
-    handleSaveAs(req)
+    handleSaveAs(req, appState)
   }
   responseObj = "Saved Code";
   mainWindow.webContents.send("fromMain", responseObj);
 });
 
-function handleSaveAs(req) {
+function handleSaveAs(req, appState) {
   const filePath = dialog.showSaveDialogSync({
     title: 'Save Code',
-    defaultPath: './code.py',
-    filters: [{ name: 'Python', extensions: ['py'] }]
+    defaultPath: req.filename,
+    filters: [{ name: 'First+', extensions: ['fp'] }]
   });
   if (filePath) {
-    fs.writeFileSync(path.join(filePath, req.filename), req.content);
+    updateStateJson(appState, { fullPath: path.dirname(filePath) });
+    fs.writeFileSync(filePath, req.content);
   }
+}
+
+function updateStateJson(appState, slice) {
+  for (const [key, value] of Object.entries(slice)) {
+    appState[key] = value;
+  }
+  fs.writeFileSync("./app/state.json", JSON.stringify(appState));
+  // TODO: update state in frontend?
 }
 
 // Upload Code
