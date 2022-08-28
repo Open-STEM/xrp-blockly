@@ -63,8 +63,8 @@ openFileButton.addEventListener("click", () => {
 
 const saveButton = document.getElementById("savebtn");
 saveButton.addEventListener("click", () => {
-    const outputCode = document.getElementById("codeLine").innerHTML;
-    window.api.send("save-code", outputCode);
+    let outputCode = document.getElementById("codeLine").innerHTML;
+    window.api.send("save-code", makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace)))
 });
 
 const saveAsButton = document.getElementById("saveasbtn");
@@ -78,6 +78,7 @@ uploadButton.addEventListener("click", () => {
     const outputCode = document.getElementById("codeLine").innerHTML;
     window.api.send("upload-code", outputCode);
 });
+
 
 
 
