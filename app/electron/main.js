@@ -67,7 +67,7 @@ app.on('window-all-closed', () => {
 // Use ipc to receive text to save to a file using system save dialog
 ipcMain.on('save-code', (event, req) => {
   if (appState.fullPath != "") {
-    let filePath = `${appState.fullPath}\\${req.filename}`;
+    let filePath = path.join(appState.fullPath, req.filename);
     fs.writeFileSync(filePath, req.content);
   } else {
 
