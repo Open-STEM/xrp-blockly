@@ -118,3 +118,19 @@ ipcMain.on('upload-code', (event, code) => {
   // responseObj = "Saved Code";
   // mainWindow.webContents.send("fromMain", responseObj);
 });
+
+// Open File
+ipcMain.on('open-file', (event, code) => {
+  const filePath = dialog.showOpenDialogSync({
+    properties: ['openFile'],
+    // title: 'Open File',
+    filters: [{ name: 'First+', extensions: ['fp'] }]
+  });
+ 
+  if (filePath) {
+    let inputFile = fs.readFileSync(filePath[0]);
+    console.log(inputFile);
+  }
+  // responseObj = "Saved Code";
+  // mainWindow.webContents.send("fromMain", responseObj);
+});
