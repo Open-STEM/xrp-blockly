@@ -61,22 +61,26 @@ openFileButton.addEventListener("click", () => {
     window.api.send("open-file");
 });
 
-const saveButton = document.getElementById("savebtn");
-saveButton.addEventListener("click", () => {
+function handleSave() {
     let outputCode = document.getElementById("codeLine").innerHTML;
-    window.api.send("save-code", makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace)))
-});
+    let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
+    window.api.send("save-code", {
+        content: fileContent,
+        filename: 'code.fp'
+    });
+}
+
+const saveButton = document.getElementById("savebtn");
+saveButton.addEventListener("click", handleSave);
 
 const saveAsButton = document.getElementById("saveasbtn");
-saveAsButton.addEventListener("click", () => {
-    const outputCode = document.getElementById("codeLine").innerHTML;
-    window.api.send("save-code", outputCode);
-});
+saveAsButton.addEventListener("click", handleSave);
 
 const uploadButton = document.getElementById("uploadbtn");
 uploadButton.addEventListener("click", () => {
     const outputCode = document.getElementById("codeLine").innerHTML;
-    window.api.send("upload-code", outputCode);
+    let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
+    window.api.send("upload-code", fileContent);
 });
 
 

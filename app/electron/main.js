@@ -4,6 +4,7 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path');
 const fs = require('fs');
+const drivelist = require('drivelist');
 try {
 	require('electron-reloader')(module);
 } catch {}
@@ -63,11 +64,12 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and require them here.
 
 /** APIs **/
-
 // Use ipc to receive text to save to a file using system save dialog
-ipcMain.on('save-code', (event, code) => {
+ipcMain.on('save-code', (event, req) => {
   if (appState.fullPath != "") {
-    console.log(appState.fullPath);
+    let filePath = `${appState.fullPath}\\${req.filename}`;
+    fs.writeFileSync(filePath, req.content);
+  } else {
 
   }
   // const filePath = dialog.showSaveDialogSync({
@@ -80,4 +82,27 @@ ipcMain.on('save-code', (event, code) => {
   // }
   responseObj = "Saved Code";
   mainWindow.webContents.send("fromMain", responseObj);
+});
+
+// Upload Code
+ipcMain.on('upload-code', (event, code) => {
+  drivelist.list()
+    .then(drives => {
+      let first_bot = drives.find(x => x.description.includes('Maker Pi RP2040'));
+      let first_bot_drive = first_bot.mountpoints[0].path;
+      let output_filepath = `${first_bot_drive}code.py`;
+      fs.writeFileSync(output_filepath, code);
+    });
+  
+
+  // const filePath = dialog.showSaveDialogSync({
+  //   title: 'Save Code',
+  //   defaultPath: 'code.py',
+  //   filters: [{ name: 'Python', extensions: ['py'] }]
+  // });
+  // if (filePath) {
+  //   fs.writeFileSync(filePath, code);
+  // }
+  // responseObj = "Saved Code";
+  // mainWindow.webContents.send("fromMain", responseObj);
 });
