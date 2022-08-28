@@ -54,7 +54,7 @@ function makefp_content(code, blks) {
  * @param {String} file fp file as string object
  */
 function readfp(file) {
-    const re = /##\s(?<info>.*)$/gm;
-    matches = file.match(re);
+    const re = /##\s(?<info>.*)$/g;
+    matches = file.matchAll(re);
     console.log({ matches })
 }

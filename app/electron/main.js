@@ -6,8 +6,8 @@ const path = require('path');
 const fs = require('fs');
 const drivelist = require('drivelist');
 try {
-	require('electron-reloader')(module);
-} catch {}
+  require('electron-reloader')(module);
+} catch { }
 
 // Load app state
 let appState = JSON.parse(fs.readFileSync("./app/state.json"));
@@ -31,7 +31,7 @@ createWindow = () => {
     mainWindow.show();
     mainWindow.focus();
   });
-  
+
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
@@ -90,10 +90,10 @@ ipcMain.on('upload-code', (event, code) => {
     .then(drives => {
       let first_bot = drives.find(x => x.description.includes('Maker Pi RP2040'));
       let first_bot_drive = first_bot.mountpoints[0].path;
-      let output_filepath = `${first_bot_drive}code.py`;
+      let output_filepath = path.join(first_bot_drive, 'code.py');
       fs.writeFileSync(output_filepath, code);
     });
-  
+
 
   // const filePath = dialog.showSaveDialogSync({
   //   title: 'Save Code',
