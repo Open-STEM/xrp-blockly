@@ -46,7 +46,7 @@ workspace.addChangeListener(myUpdateFunction);
 let saveButton = document.getElementById("save");
 saveButton.addEventListener("click", () => {
     let outputCode = document.getElementById("codeLine").innerHTML;
-    window.api.send("save-code", outputCode);
+    window.api.send("save-code", makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace)))
 });
 
 
