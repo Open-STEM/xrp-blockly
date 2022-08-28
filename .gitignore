@@ -1,5 +1,5 @@
 # Internal state.json
-state.json
+app/state*.json
 
 # Logs
 logs
