@@ -5,9 +5,9 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path');
 const fs = require('fs');
 const drivelist = require('drivelist');
-try {
-  require('electron-reloader')(module);
-} catch { }
+// try {
+//   require('electron-reloader')(module);
+// } catch { }
 
 // Load app state
 let appState = JSON.parse(fs.readFileSync("./app/state.json"));
