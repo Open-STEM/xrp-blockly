@@ -9,7 +9,7 @@ contextBridge.exposeInMainWorld(
   "api", {
   send: (channel, data) => {
     // whitelist channels
-    let validChannels = ["save-code"];
+    let validChannels = ["save-code", "open-file", "upload-code"];
     if (validChannels.includes(channel)) {
       ipcRenderer.send(channel, data);
     }
@@ -20,6 +20,7 @@ contextBridge.exposeInMainWorld(
       // Deliberately strip event as it includes `sender` 
       ipcRenderer.on(channel, (event, ...args) => func(...args));
     }
-  }
+  },
+  loadAppState: () => ipcRenderer.invoke('load-appstate')
 }
 );

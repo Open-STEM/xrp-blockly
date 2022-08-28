@@ -1,4 +1,4 @@
-// const fs = require('fs');
+/* Set up blockly workspace */
 // var blocklyArea = document.getElementById('blocklyArea');
 var blocklyDiv = document.getElementById('blocklyDiv');
 var workspace = Blockly.inject(blocklyDiv,
@@ -16,6 +16,7 @@ var workspace = Blockly.inject(blocklyDiv,
         },
         trashcan: true
     });
+
 var onresize = function (e) {
     // Compute the absolute coordinates and dimensions of blocklyArea.
     var x = 0;
@@ -36,18 +37,48 @@ if (workspaceBlocks) {
     Blockly.Xml.domToWorkspace(workspaceBlocks, workspace);
 }
 
-
+/* Auto update Python when workspace is changed */
 function myUpdateFunction(event) {
     var code = Blockly.Python.workspaceToCode(workspace);
     document.getElementById('codeLine').innerHTML = processCode(code);
 }
 workspace.addChangeListener(myUpdateFunction);
 
-let saveButton = document.getElementById("save");
-saveButton.addEventListener("click", () => {
-    let outputCode = document.getElementById("codeLine").innerHTML;
+window.api.loadAppState()
+    .then(result => {
+        window.appState = result
+    });
+
+/* Add event listeners to buttons */
+const newFileButton = document.getElementById("newfilebtn");
+newFileButton.addEventListener("click", () => {
+    const outputCode = document.getElementById("codeLine").innerHTML;
     window.api.send("save-code", outputCode);
 });
+
+const openFileButton = document.getElementById("openfilebtn");
+openFileButton.addEventListener("click", () => {
+    window.api.send("open-file");
+});
+
+const saveButton = document.getElementById("savebtn");
+saveButton.addEventListener("click", () => {
+    const outputCode = document.getElementById("codeLine").innerHTML;
+    window.api.send("save-code", outputCode);
+});
+
+const saveAsButton = document.getElementById("saveasbtn");
+saveAsButton.addEventListener("click", () => {
+    const outputCode = document.getElementById("codeLine").innerHTML;
+    window.api.send("save-code", outputCode);
+});
+
+const uploadButton = document.getElementById("uploadbtn");
+uploadButton.addEventListener("click", () => {
+    const outputCode = document.getElementById("codeLine").innerHTML;
+    window.api.send("upload-code", outputCode);
+});
+
 
 
 /* Code Cleaning and Formatting */

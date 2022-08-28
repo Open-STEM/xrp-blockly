@@ -4,9 +4,14 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path');
 const fs = require('fs');
+try {
+	require('electron-reloader')(module);
+} catch {}
+
+// Load app state
+let appState = JSON.parse(fs.readFileSync("./app/state.json"));
 
 let mainWindow;
-
 createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -25,6 +30,7 @@ createWindow = () => {
     mainWindow.show();
     mainWindow.focus();
   });
+  
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
@@ -36,6 +42,7 @@ createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  ipcMain.handle('load-appstate', () => appState);
   createWindow()
 
   app.on('activate', () => {
@@ -55,16 +62,22 @@ app.on('window-all-closed', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
+/** APIs **/
+
 // Use ipc to receive text to save to a file using system save dialog
 ipcMain.on('save-code', (event, code) => {
-  const filePath = dialog.showSaveDialogSync({
-    title: 'Save Code',
-    defaultPath: 'code.py',
-    filters: [{ name: 'Python', extensions: ['py'] }]
-  });
-  if (filePath) {
-    fs.writeFileSync(filePath, code);
+  if (appState.fullPath != "") {
+    console.log(appState.fullPath);
+
   }
+  // const filePath = dialog.showSaveDialogSync({
+  //   title: 'Save Code',
+  //   defaultPath: 'code.py',
+  //   filters: [{ name: 'Python', extensions: ['py'] }]
+  // });
+  // if (filePath) {
+  //   fs.writeFileSync("./code.py", code);
+  // }
   responseObj = "Saved Code";
   mainWindow.webContents.send("fromMain", responseObj);
 });
