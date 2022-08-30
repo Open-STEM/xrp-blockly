@@ -31,6 +31,7 @@ createWindow = () => {
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
+  mainWindow.setMenu(null);
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
@@ -78,7 +79,7 @@ ipcMain.on('save-code', (event, req) => {
 
 function handleSaveAs(req, appState) {
   const filePath = dialog.showSaveDialogSync({
-    title: 'Save Code',
+    title: 'Save As',
     defaultPath: req.filename,
     filters: [{ name: 'First+', extensions: ['fp'] }]
   });
@@ -122,6 +123,7 @@ ipcMain.on('upload-code', (event, code) => {
 // Open File
 ipcMain.on('open-file', (event, code) => {
   const filePath = dialog.showOpenDialogSync({
+    title: "Open File",
     properties: ['openFile'],
     // title: 'Open File',
     filters: [{ name: 'First+', extensions: ['fp'] }]

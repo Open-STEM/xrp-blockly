@@ -52,8 +52,8 @@ window.api.loadAppState()
 /* Add event listeners to buttons */
 const newFileButton = document.getElementById("newfilebtn");
 newFileButton.addEventListener("click", () => {
-    const outputCode = document.getElementById("codeLine").innerHTML;
-    window.api.send("save-code", outputCode);
+    // const outputCode = document.getElementById("codeLine").innerHTML;
+    // window.api.send("save-code", outputCode);
 });
 
 const openFileButton = document.getElementById("openfilebtn");
@@ -83,7 +83,20 @@ uploadButton.addEventListener("click", () => {
     window.api.send("upload-code", fileContent);
 });
 
+// let iconsArr = ["newfilebtn", "openfilebtn", "savebtn", "saveasbtn", "uploadbtn"];
 
+// iconsArr.forEach(x => {
+//     let el = document.getElementById(x);
+//     el.onmouseover = function() {
+//         el.classList.toggle('fa-2x');
+//         el.classList.toggle('fa-3x');
+//     }
+
+//     el.onmouseout = function() {
+//         el.classList.toggle('fa-2x');
+//         el.classList.toggle('fa-3x');
+//     }
+// });
 
 
 /* Code Cleaning and Formatting */
