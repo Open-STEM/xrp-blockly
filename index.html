@@ -29,6 +29,20 @@
       font-weight: normal;
       font-size: 140%;
     }
+
+    .toggleCode {
+      z-index: 5;
+      top: 50%;
+      position: absolute;
+    }
+
+    #toggleOpen{
+      display: none;
+      right: 2%;
+    }
+    #toggleClosed{
+      display: block;
+    }
   </style>
 
   <!-- <link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.5.1/styles/default.min.css">
@@ -494,13 +508,12 @@
         <div id="blocklyDiv"></div>
       </div>
       <div class="col-4">
-        <div style="
-              z-index: 5;
-              top: 50%;
-              position: absolute;
-          ">
+        <div id="toggleOpen" class="toggleCode">
           <i class="fa-solid fa-angle-left fa-2x"></i>
           <i class="fa-brands fa-python fa-2x"></i>
+        </div>
+        <div id="toggleClosed" class="toggleCode">
+          <i class="fa-solid fa-angle-right fa-2x"></i>
         </div>
         <div id="textArea" height="100%" width="100%">
           <pre style="height:90vh; overflow:scroll;"><code id="codeLine" class="python"></code>
