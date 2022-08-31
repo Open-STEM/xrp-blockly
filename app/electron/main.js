@@ -5,6 +5,8 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path');
 const fs = require('fs');
 const drivelist = require('drivelist');
+var AsyncPolling = require('async-polling');
+
 // try {
 //   require('electron-reloader')(module);
 // } catch { }
@@ -51,6 +53,19 @@ app.whenReady().then(() => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+
+  AsyncPolling(function (end) {
+    drivelist.list()
+      .then(drives => {
+        let first_bot = drives.find(x => x.description.includes('Maker Pi RP2040'));
+        if (first_bot) mainWindow.webContents.send('bot-connected', true);
+        else mainWindow.webContents.send('bot-connected', false);
+        end()
+      })
+      .catch(err => {
+        end();
+      });
+  }, 3000).run();
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -106,18 +121,6 @@ ipcMain.on('upload-code', (event, code) => {
       let output_filepath = path.join(first_bot_drive, 'code.py');
       fs.writeFileSync(output_filepath, code);
     });
-
-
-  // const filePath = dialog.showSaveDialogSync({
-  //   title: 'Save Code',
-  //   defaultPath: 'code.py',
-  //   filters: [{ name: 'Python', extensions: ['py'] }]
-  // });
-  // if (filePath) {
-  //   fs.writeFileSync(filePath, code);
-  // }
-  // responseObj = "Saved Code";
-  // mainWindow.webContents.send("fromMain", responseObj);
 });
 
 // Open File

@@ -1,7 +1,54 @@
 /* Set up blockly workspace */
 // var blocklyArea = document.getElementById('blocklyArea');
-const toggleOpenDiv = document.getElementById("toggleOpen");
 
+const robotIcon = document.getElementById("roboticon");
+const uploadButton = document.getElementById("uploadbtn");
+
+function robotHandleMouseover() {
+    uploadButton.style.color = '#0066B2';
+    uploadButton.style.cursor = 'pointer';
+}
+
+function robotHandleMouseout() {
+    uploadButton.style.color = '';
+}
+
+function robotHandleClick() {
+    const outputCode = document.getElementById("codeLine").innerHTML;
+    let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
+    window.api.send("upload-code", fileContent);
+}
+
+var eventListenerAdded = false;
+
+window.api.robotConnected((_event, value) => {
+    if (value === true) {
+        robotIcon.style.color = 'green';
+
+        if (!eventListenerAdded) {
+            uploadButton.addEventListener("mouseover", robotHandleMouseover);
+            uploadButton.addEventListener("mouseout", robotHandleMouseout);
+            uploadButton.addEventListener("click", robotHandleClick);
+            eventListenerAdded = true;
+            console.log("added");
+        }
+    } else if (value === false) {
+        robotIcon.style.color = 'red';
+
+        if (eventListenerAdded) {
+            uploadButton.removeEventListener("mouseover", robotHandleMouseover);
+            uploadButton.removeEventListener("mouseout", robotHandleMouseout);
+            uploadButton.removeEventListener("click", robotHandleClick);
+            eventListenerAdded = false;
+            uploadButton.style.cursor = 'default';
+            uploadButton.style.color = '';
+            console.log("removed")
+        }
+    } else {
+    }
+})
+
+const toggleOpenDiv = document.getElementById("toggleOpen");
 
 var blocklyDiv = document.getElementById('blocklyDiv');
 var workspace = Blockly.inject(blocklyDiv,
@@ -83,13 +130,6 @@ saveButton.addEventListener("click", handleSave);
 const saveAsButton = document.getElementById("saveasbtn");
 saveAsButton.addEventListener("click", handleSave);
 
-const uploadButton = document.getElementById("uploadbtn");
-uploadButton.addEventListener("click", () => {
-    const outputCode = document.getElementById("codeLine").innerHTML;
-    let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
-    window.api.send("upload-code", fileContent);
-});
-
 const pythonArea = document.getElementById("textArea");
 const blocklyArea = document.getElementById("blocklyArea");
 
@@ -116,7 +156,7 @@ toggleOpenDiv.addEventListener("click", () => {
 });
 
 
-let iconsArr = ["newfilebtn", "openfilebtn", "savebtn", "saveasbtn", "uploadbtn"];
+let iconsArr = ["newfilebtn", "openfilebtn", "savebtn", "saveasbtn"];
 
 iconsArr.forEach(x => {
     let el = document.getElementById(x);

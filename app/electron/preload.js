@@ -21,6 +21,7 @@ contextBridge.exposeInMainWorld(
       ipcRenderer.on(channel, (event, ...args) => func(...args));
     }
   },
-  loadAppState: () => ipcRenderer.invoke('load-appstate')
+  loadAppState: () => ipcRenderer.invoke('load-appstate'),
+  robotConnected: (callback) => ipcRenderer.on('bot-connected', callback)
 }
 );
