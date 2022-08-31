@@ -65,19 +65,19 @@
 
 <body>
   <div class="container-fluid">
-    <div class="row align-items-center" style="height: 15vh">
+    <div class="row align-items-center" style="height: 10vh">
       <div class="col-2 d-flex">
-        <i id="newfilebtn" class="mx-auto fa-solid fa-file-circle-plus fa-2x"></i>
-        <i id="openfilebtn" class="mx-auto fa-solid fa-folder-open fa-2x"></i>
-        <i id="savebtn" class="mx-auto fa-solid fa-floppy-disk fa-2x"></i>
-        <i id="saveasbtn" class="mx-auto fa-solid fa-floppy-disk fa-2x"></i>
+        <i id="newfilebtn" class="ms-3 me-0 fa-solid fa-file-circle-plus fa-2x"></i>
+        <i id="openfilebtn" class="ms-3 me-0 fa-solid fa-folder-open fa-2x"></i>
+        <i id="savebtn" class="ms-3 me-0 fa-solid fa-floppy-disk fa-2x"></i>
+        <i id="saveasbtn" class="ms-3 me-auto fa-solid fa-floppy-disk fa-2x"></i>
       </div>
       <div class="col-2"></div>
       <div class="col-4 d-flex">
         <?xml version="1.0" encoding="utf-8"?>
         <!-- Generator: Adobe Illustrator 26.5.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-           viewBox="0 0 612 217.7" style="enable-background:new 0 0 612 217.7; max-height: 12vh;" xml:space="preserve" class="mx-auto">
+           viewBox="0 0 612 217.7" style="enable-background:new 0 0 612 217.7; max-height: 8vh;" xml:space="preserve" class="mx-auto">
         <style type="text/css">
           .st0{fill:#231F20;}
           .st1{fill:#98989A;}
@@ -509,18 +509,14 @@
         </xml>
       </div>
     </div>
-    <table>
-      <tr>
-        <td id="blocklyArea" style="width:66%">
-          <div id="blocklyDiv"></div>
-        </td>
-        <td id="textArea">
-          <pre style="height:99%; overflow:scroll;"><code id="codeLine" class="python"></code>
-        </td>
-      </tr>
-    </table>
-
-
+    <div class="row">
+      <div class="col" id="blocklyArea">
+        <div id="blocklyDiv"></div>
+      </div>
+      <div class="col-4" id="textArea">
+          <pre style="height:90vh; overflow:scroll;"><code id="codeLine" class="python"></code>
+      </div>
+    </div>
   </div>
 
     <!-- <script src="scripts/toolbox.js"></script> -->
