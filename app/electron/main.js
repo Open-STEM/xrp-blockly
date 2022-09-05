@@ -134,8 +134,6 @@ ipcMain.on('open-file', (event, code) => {
 
   if (filePath) {
     let inputFile = fs.readFileSync(filePath[0], { encoding: 'utf8' });
-    console.log(inputFile);
+    mainWindow.webContents.send("opened-file", inputFile);
   }
-  // responseObj = "Saved Code";
-  // mainWindow.webContents.send("fromMain", responseObj);
 });

@@ -50,6 +50,21 @@ function makefp_content(code, blks) {
 }
 
 /**
+ * Get the last line of a file after the double comment note
+ * @param {String} file 
+ * @returns The last line of the file after the '##'
+ */
+function getBlockLine(file){
+    // console.log("in blockline");
+    // console.log(file);
+    var lines = file.split('##');
+    var finalLine = lines.slice(-1)[0];
+    // console.log(finalLine);
+    return finalLine;
+}
+
+
+/**
  * Read in fp file
  * @param {String} file fp file as string object
  */
@@ -57,7 +72,10 @@ function readfp(file) {
     // const re = /##\s(?<info>.*)$/g;
     // matches = file.matchAll(re);
     // console.log({ matches })
-    const dummyval = '{"blocks":{"languageVersion":0,"blocks":[{"type":"procedures_defnoreturn","id":"IsxZeLy(~T83p5;F]|/z","x":63,"y":38,"extraState":{"params":[{"name":"sides","id":"sV[YiybSVpx-~;1;D:vv"}]},"icons":{"comment":{"text":"Draw a polygon with any given sides","pinned":false,"height":80,"width":160}},"fields":{"NAME":"polygon"},"inputs":{"STACK":{"block":{"type":"controls_repeat_ext","id":"BrMKqWjxOkTv)Nb0:19X","inputs":{"TIMES":{"block":{"type":"variables_get","id":"FXg,ZI8c]uXY5M**o,4o","fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}}}},"DO":{"block":{"type":"fp_straight_val","id":"{LmoLT:Ok841t}OJ.KK}","inputs":{"dist":{"block":{"type":"math_number","id":"gW#L*x3VXJ8}B_n#qI77","fields":{"NUM":150}}}},"next":{"block":{"type":"fp_turn_val","id":"E,,A#fLe0lZMJc+N.Hf?","inputs":{"angle":{"block":{"type":"math_arithmetic","id":"j;O(Fx/%;`NtZNs(qL6=","fields":{"OP":"DIVIDE"},"inputs":{"A":{"shadow":{"type":"math_number","id":"{/Drmz[VsPo89q%PwaVZ","fields":{"NUM":1}},"block":{"type":"math_number","id":"el_J8yGp-ywNqRw~22Jc","fields":{"NUM":360}}},"B":{"shadow":{"type":"math_number","id":"n!g~4v1Nsv3xP$n_tL[@","fields":{"NUM":1}},"block":{"type":"variables_get","id":"v1y!,?e!$9Fq*%J`t|4T","fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}}}}}}}}}}}}}}}}},{"type":"variables_set","id":"^Xb)r_-gQSVXA^+!@Kdt","x":79,"y":268,"fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}},"inputs":{"VALUE":{"block":{"type":"fp_getsonardist","id":"}Fzzyvn=v,tly7ZH8wJW"}}}}]},"variables":[{"name":"sides","id":"sV[YiybSVpx-~;1;D:vv"}]}';
-    const dummyjson = JSON.parse(dummyval);
-    return dummyjson;
+    // console.log({file})
+    var lastLine = getBlockLine(file);
+    // const dummyval = '{"blocks":{"languageVersion":0,"blocks":[{"type":"procedures_defnoreturn","id":"IsxZeLy(~T83p5;F]|/z","x":63,"y":38,"extraState":{"params":[{"name":"sides","id":"sV[YiybSVpx-~;1;D:vv"}]},"icons":{"comment":{"text":"Draw a polygon with any given sides","pinned":false,"height":80,"width":160}},"fields":{"NAME":"polygon"},"inputs":{"STACK":{"block":{"type":"controls_repeat_ext","id":"BrMKqWjxOkTv)Nb0:19X","inputs":{"TIMES":{"block":{"type":"variables_get","id":"FXg,ZI8c]uXY5M**o,4o","fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}}}},"DO":{"block":{"type":"fp_straight_val","id":"{LmoLT:Ok841t}OJ.KK}","inputs":{"dist":{"block":{"type":"math_number","id":"gW#L*x3VXJ8}B_n#qI77","fields":{"NUM":150}}}},"next":{"block":{"type":"fp_turn_val","id":"E,,A#fLe0lZMJc+N.Hf?","inputs":{"angle":{"block":{"type":"math_arithmetic","id":"j;O(Fx/%;`NtZNs(qL6=","fields":{"OP":"DIVIDE"},"inputs":{"A":{"shadow":{"type":"math_number","id":"{/Drmz[VsPo89q%PwaVZ","fields":{"NUM":1}},"block":{"type":"math_number","id":"el_J8yGp-ywNqRw~22Jc","fields":{"NUM":360}}},"B":{"shadow":{"type":"math_number","id":"n!g~4v1Nsv3xP$n_tL[@","fields":{"NUM":1}},"block":{"type":"variables_get","id":"v1y!,?e!$9Fq*%J`t|4T","fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}}}}}}}}}}}}}}}}},{"type":"variables_set","id":"^Xb)r_-gQSVXA^+!@Kdt","x":79,"y":268,"fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}},"inputs":{"VALUE":{"block":{"type":"fp_getsonardist","id":"}Fzzyvn=v,tly7ZH8wJW"}}}}]},"variables":[{"name":"sides","id":"sV[YiybSVpx-~;1;D:vv"}]}';
+    // const dummyjson = JSON.parse(dummyval);
+    var jsonBlocks = JSON.parse(lastLine);
+    return jsonBlocks;
 }

@@ -182,7 +182,13 @@ toggleIconsArr.forEach(x => {
     el.onmouseout = () => {
         el.style.color = '';
     }
-})
+});
+
+
+window.api.openedFile((_event, file) => {
+    var newLib = readfp(file);
+    Blockly.serialization.workspaces.load(newLib,workspace);
+});
 
 /* Code Cleaning and Formatting */
 function processCode(code) {

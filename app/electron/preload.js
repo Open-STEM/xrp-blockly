@@ -15,13 +15,14 @@ contextBridge.exposeInMainWorld(
     }
   },
   receive: (channel, func) => {
-    let validChannels = ["fromMain"];
+    let validChannels = ["fromMain","opened-file"];
     if (validChannels.includes(channel)) {
       // Deliberately strip event as it includes `sender` 
       ipcRenderer.on(channel, (event, ...args) => func(...args));
     }
   },
   loadAppState: () => ipcRenderer.invoke('load-appstate'),
-  robotConnected: (callback) => ipcRenderer.on('bot-connected', callback)
+  robotConnected: (callback) => ipcRenderer.on('bot-connected', callback),
+  openedFile: (callback) => ipcRenderer.on('opened-file', callback)
 }
 );
