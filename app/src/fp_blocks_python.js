@@ -52,25 +52,27 @@ Blockly.Python['fp_reset_drivebase'] = function (block) {
   return code;
 };
 
+// ---- NEWER LIB -------
+
 Blockly.Python['fp_seteffort'] = function (block) {
   var number_val1 = block.getFieldValue('val1');
   var number_val2 = block.getFieldValue('val2');
   // TODO: Assemble Python into code variable.
-  var code = `driveBase.setEffort(${number_val1}, ${number_val2})\n`;
+  var code = `drivetrain.set_effort(${number_val1}, ${number_val2})\n`;
   return code;
 };
 
 Blockly.Python['fp_straight'] = function (block) {
   var number_dist = block.getFieldValue('dist');
   // TODO: Assemble Python into code variable.
-  var code = `driveBase.straight(${number_dist})\n`;
+  var code = `drivetrain.go_straight(${number_dist})\n`;
   return code;
 };
 
 Blockly.Python['fp_turn'] = function (block) {
   var number_angle = block.getFieldValue('angle');
   // TODO: Assemble Python into code variable.
-  var code = `driveBase.turn(${number_angle})\n`;
+  var code = `drivetrain.go_turn(${number_angle})\n`;
   return code;
 };
 
@@ -91,7 +93,7 @@ Blockly.Python['fp_sleep'] = function (block) {
 Blockly.Python['fp_setefforts'] = function (block) {
   var number_val1 = block.getFieldValue('val1');
   // TODO: Assemble Python into code variable.
-  var code = `driveBase.setEfforts(${number_val1})\n`;
+  var code = `drivetrain.set_effort(${number_val1})\n`;
   return code;
 };
 
@@ -99,13 +101,13 @@ Blockly.Python['fp_setefforts'] = function (block) {
 Blockly.Python['fp_turn_val'] = function (block) {
   var value_angle = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = `driveBase.turn(${value_angle})\n`;
+  var code = `drivetrain.go_turn(${value_angle})\n`;
   return code;
 };
 
 Blockly.Python['fp_straight_val'] = function (block) {
   var value_dist = Blockly.Python.valueToCode(block, 'dist', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = `driveBase.straight(${value_dist})\n`;
+  var code = `drivetrain.go_straight(${value_dist})\n`;
   return code;
 };
