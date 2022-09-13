@@ -7,11 +7,7 @@ const fs = require('fs');
 const drivelist = require('drivelist');
 var AsyncPolling = require('async-polling');
 
-// try {
-//   require('electron-reloader')(module);
-// } catch { }
-
-let mainWindow;
+var mainWindow;
 createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -77,72 +73,14 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+function getMainWindow() {
+  return mainWindow
+};
 
-/** APIs **/
-// Use ipc to receive text to save to a file using system save dialog
-ipcMain.on('save-code', (event, req) => {
-  const appState = JSON.parse(fs.readFileSync("./app/state.json"));
-  if (appState.fullPath != "") {
-    let filePath = path.join(appState.fullPath, req.filename);
-    fs.writeFileSync(filePath, req.content);
-  } else {
-    handleSaveAs(req, appState)
-  }
-  responseObj = "Saved Code";
-  mainWindow.webContents.send("fromMain", responseObj);
-});
+global.share = {
+  mainWindow,
+  ipcMain,
+  getMainWindow
+};
 
-ipcMain.on('saveas-code', (event, req) => {
-  const appState = JSON.parse(fs.readFileSync("./app/state.json"));
-  req.filename = "";
-  handleSaveAs(req, appState);
-
-  responseObj = "Saved Code";
-  mainWindow.webContents.send("fromMain", responseObj);
-});
-
-function handleSaveAs(req, appState) {
-  const filePath = dialog.showSaveDialogSync({
-    title: 'Save As',
-    defaultPath: req.filename, // null if saveas req
-    filters: [{ name: 'First+', extensions: ['fp'] }]
-  });
-  if (filePath) {
-    updateStateJson(appState, { fullPath: path.dirname(filePath) });
-    fs.writeFileSync(filePath, req.content);
-  }
-}
-
-function updateStateJson(appState, slice) {
-  for (const [key, value] of Object.entries(slice)) {
-    appState[key] = value;
-  }
-  fs.writeFileSync("./app/state.json", JSON.stringify(appState));
-  // TODO: update state in frontend?
-}
-
-// Upload Code
-ipcMain.on('upload-code', (event, code) => {
-  drivelist.list()
-    .then(drives => {
-      let first_bot = drives.find(x => x.description.includes('Maker Pi RP2040'));
-      let first_bot_drive = first_bot.mountpoints[0].path;
-      let output_filepath = path.join(first_bot_drive, 'code.py');
-      fs.writeFileSync(output_filepath, code);
-    });
-});
-
-// Open File
-ipcMain.on('open-file', (event, code) => {
-  const filePath = dialog.showOpenDialogSync({
-    title: "Open File",
-    properties: ['openFile'],
-    // title: 'Open File',
-    filters: [{ name: 'First+', extensions: ['fp'] }]
-  });
-
-  if (filePath) {
-    let inputFile = fs.readFileSync(filePath[0], { encoding: 'utf8' });
-    mainWindow.webContents.send("opened-file", inputFile);
-  }
-});
+require('./apis.js');
