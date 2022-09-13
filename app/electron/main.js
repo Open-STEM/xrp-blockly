@@ -92,10 +92,19 @@ ipcMain.on('save-code', (event, req) => {
   mainWindow.webContents.send("fromMain", responseObj);
 });
 
+ipcMain.on('saveas-code', (event, req) => {
+  const appState = JSON.parse(fs.readFileSync("./app/state.json"));
+  req.filename = "";
+  handleSaveAs(req, appState);
+
+  responseObj = "Saved Code";
+  mainWindow.webContents.send("fromMain", responseObj);
+});
+
 function handleSaveAs(req, appState) {
   const filePath = dialog.showSaveDialogSync({
     title: 'Save As',
-    defaultPath: req.filename,
+    defaultPath: req.filename, // null if saveas req
     filters: [{ name: 'First+', extensions: ['fp'] }]
   });
   if (filePath) {

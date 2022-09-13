@@ -124,11 +124,19 @@ function handleSave() {
     });
 }
 
+function handleSaveAs() {
+    let outputCode = document.getElementById("codeLine").innerHTML;
+    let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
+    window.api.send("saveas-code", {
+        content: fileContent
+    });
+}
+
 const saveButton = document.getElementById("savebtn");
 saveButton.addEventListener("click", handleSave);
 
 const saveAsButton = document.getElementById("saveasbtn");
-saveAsButton.addEventListener("click", handleSave);
+saveAsButton.addEventListener("click", handleSaveAs);
 
 const pythonArea = document.getElementById("textArea");
 const blocklyArea = document.getElementById("blocklyArea");
