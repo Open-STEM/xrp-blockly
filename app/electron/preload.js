@@ -7,22 +7,11 @@ const {
 // the ipcRenderer without exposing the entire object
 contextBridge.exposeInMainWorld(
   "api", {
-  send: (channel, data) => {
-    // whitelist channels
-    let validChannels = ["save-code", "saveas-code", "open-file", "upload-code"];
-    if (validChannels.includes(channel)) {
-      ipcRenderer.send(channel, data);
-    }
-  },
-  receive: (channel, func) => {
-    let validChannels = ["fromMain","opened-file"];
-    if (validChannels.includes(channel)) {
-      // Deliberately strip event as it includes `sender` 
-      ipcRenderer.on(channel, (event, ...args) => func(...args));
-    }
-  },
-  loadAppState: () => ipcRenderer.invoke('load-appstate'),
-  robotConnected: (callback) => ipcRenderer.on('bot-connected', callback),
-  openedFile: (callback) => ipcRenderer.on('opened-file', callback)
-}
+    saveCode: (req) => ipcRenderer.invoke('save-code', req),
+    saveAsCode: (req) => ipcRenderer.invoke('saveas-code', req),
+    openFile: () => ipcRenderer.invoke('open-file'),
+    uploadCode: (code) => ipcRenderer.invoke('upload-code', code),
+    loadAppState: () => ipcRenderer.invoke('load-appstate'),
+    robotConnected: (callback) => ipcRenderer.on('bot-connected', callback)
+  }
 );

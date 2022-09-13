@@ -1,6 +1,7 @@
 /* Set up blockly workspace */
 // var blocklyArea = document.getElementById('blocklyArea');
 
+const fileNameEl = document.getElementById("filename");
 const robotIcon = document.getElementById("roboticon");
 const uploadButton = document.getElementById("uploadbtn");
 
@@ -13,10 +14,13 @@ function robotHandleMouseout() {
     uploadButton.style.color = '';
 }
 
-function robotHandleClick() {
+async function robotHandleClick() {
     const outputCode = document.getElementById("codeLine").innerHTML;
     let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
-    window.api.send("upload-code", fileContent);
+    let result = await window.api.uploadCode(fileContent);
+    console.log(result);
+    
+    if (result.status !== 200) alert(result.message);
 }
 
 var eventListenerAdded = false;
@@ -30,7 +34,6 @@ window.api.robotConnected((_event, value) => {
             uploadButton.addEventListener("mouseout", robotHandleMouseout);
             uploadButton.addEventListener("click", robotHandleClick);
             eventListenerAdded = true;
-            console.log("added");
         }
     } else if (value === false) {
         robotIcon.style.color = 'red';
@@ -42,7 +45,6 @@ window.api.robotConnected((_event, value) => {
             eventListenerAdded = false;
             uploadButton.style.cursor = 'default';
             uploadButton.style.color = '';
-            console.log("removed")
         }
     } else {
     }
@@ -111,32 +113,60 @@ newFileButton.addEventListener("click", () => {
 });
 
 const openFileButton = document.getElementById("openfilebtn");
-openFileButton.addEventListener("click", () => {
-    window.api.send("open-file");
+openFileButton.addEventListener("click", async () => {
+    let result = await window.api.openFile();
+    console.log(result);
+
+    if (result.status === 200) {
+        let newLib = readfp(result.payload.fileContent);
+        Blockly.serialization.workspaces.load(newLib,workspace);
+
+        fileNameEl.innerHTML = result.payload.fileName;
+    } else {
+        alert(result.message);
+    }
 });
 
-function handleSave() {
+async function saveListener() {
     let outputCode = document.getElementById("codeLine").innerHTML;
     let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
-    window.api.send("save-code", {
+    let result = await window.api.saveCode({
+        content: fileContent,
+        filename: fileNameEl.innerHTML === 'Unsaved File' ? 'code.fp' : fileNameEl.innerHTML
+    });
+
+    if (result.status === 200) {
+        fileNameEl.innerHTML = result.message;
+        await new Promise(r => setTimeout(r, 500));
+        fileNameEl.innerHTML = result.payload;
+    } else {
+        alert(result.message);
+    }
+}
+
+async function saveAsListener() {
+    let outputCode = document.getElementById("codeLine").innerHTML;
+    let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
+    let result = await window.api.saveAsCode({
         content: fileContent,
         filename: 'code.fp'
     });
-}
 
-function handleSaveAs() {
-    let outputCode = document.getElementById("codeLine").innerHTML;
-    let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
-    window.api.send("saveas-code", {
-        content: fileContent
-    });
+    console.log(result);
+    if (result.status === 200) {
+        fileNameEl.innerHTML = result.message;
+        await new Promise(r => setTimeout(r, 500));
+        fileNameEl.innerHTML = result.payload;
+    } else {
+        alert(result.message);
+    }
 }
 
 const saveButton = document.getElementById("savebtn");
-saveButton.addEventListener("click", handleSave);
+saveButton.addEventListener("click", saveListener);
 
 const saveAsButton = document.getElementById("saveasbtn");
-saveAsButton.addEventListener("click", handleSaveAs);
+saveAsButton.addEventListener("click", saveAsListener);
 
 const pythonArea = document.getElementById("textArea");
 const blocklyArea = document.getElementById("blocklyArea");
@@ -190,12 +220,6 @@ toggleIconsArr.forEach(x => {
     el.onmouseout = () => {
         el.style.color = '';
     }
-});
-
-
-window.api.openedFile((_event, file) => {
-    var newLib = readfp(file);
-    Blockly.serialization.workspaces.load(newLib,workspace);
 });
 
 /* Code Cleaning and Formatting */

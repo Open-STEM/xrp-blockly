@@ -28,3 +28,8 @@ h1 {
 #toggleClosed{
 	display: block;
 }
+
+#filename {
+	color: #0066B2;
+	font-weight: 600;
+}
