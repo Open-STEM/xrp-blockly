@@ -83,7 +83,9 @@ iconsArr.forEach(x => {
 });
 
 
-// window.api.loadAppState()
-//     .then(result => {
-//         window.appState = result
-//     });
+window.api.loadAppState()
+    .then(result => {
+        window.appState = result.appState;
+        let versionElement = document.getElementById("codeVersion");
+        versionElement.innerHTML = `v${result.package.version}`;
+    });

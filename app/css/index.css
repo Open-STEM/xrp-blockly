@@ -33,3 +33,10 @@ h1 {
 	color: #0066B2;
 	font-weight: 600;
 }
+
+#codeVersion {
+	position: absolute;
+	left: 3%;
+	bottom: 2%;
+	z-index: 100;
+}

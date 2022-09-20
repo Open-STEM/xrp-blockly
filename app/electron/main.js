@@ -40,7 +40,10 @@ createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   ipcMain.handle('load-appstate', () => {
-    return JSON.parse(fs.readFileSync("./app/state.json"));
+    return {
+      appstate: JSON.parse(fs.readFileSync("./app/state.json")),
+      package: JSON.parse(fs.readFileSync("./package.json"))
+    }
   });
   createWindow()
 
