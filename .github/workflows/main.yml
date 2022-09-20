@@ -32,6 +32,9 @@ jobs:
         with:
           node-version: 16
           
+      - name: getdeps
+        run: npm install
+          
       - name: build
         run: npm run package
 
