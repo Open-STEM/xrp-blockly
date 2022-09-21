@@ -1,5 +1,5 @@
 {
-  "name": "First+ IDE",
+  "name": "First Plus IDE",
   "version": "0.0.1",
   "description": "First+ IDE",
   "main": "app/electron/main.js",
