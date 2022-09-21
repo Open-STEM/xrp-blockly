@@ -114,7 +114,7 @@ async function handleOpenFile(event, req) {
 function saveAsReq(req, appState) {
 	const filePath = dialog.showSaveDialogSync({
 		title: 'Save As',
-		defaultPath: req.filename, // null if saveas req
+		// defaultPath: req.filename, // null if saveas req
 		filters: [{ name: 'First+', extensions: ['fp'] }]
 	});
 	if (filePath) {
