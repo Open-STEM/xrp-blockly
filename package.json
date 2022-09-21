@@ -1,15 +1,18 @@
 {
   "name": "fp-electron",
   "version": "1.0.0",
-  "description": "Electron First Plus",
+  "description": "First+ IDE",
   "main": "app/electron/main.js",
   "scripts": {
     "test": "electron .",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "electron:package:mac": "electron-builder -m -c.extraMetadata.main=app/electron/main.js",
+    "electron:package:win": "electron-builder -w -c.extraMetadata.main=app/electron/main.js",
+    "electron:package:linux": "electron-builder -l -c.extraMetadata.main=app/electron/main.js"
   },
-  "author": "yew",
+  "author": "yew + sd",
   "license": "ISC",
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.65",
@@ -17,7 +20,8 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.65",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.65",
     "@electron-forge/maker-zip": "^6.0.0-beta.65",
-    "electron": "^20.1.0"
+    "electron": "^20.1.0",
+    "electron-builder": "^23.3.3"
   },
   "dependencies": {
     "async-polling": "^0.2.1",
@@ -51,6 +55,23 @@
           "config": {}
         }
       ]
+    }
+  },
+  "build": {
+    "appId": "com.electron.firstplus",
+    "productName": "First+ IDE",
+    "files": ["build/**/*", "node_modules/**/*"],
+    "directories": {
+      "buildResources": "app/electron/main.js"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "deb"
     }
   }
 }
