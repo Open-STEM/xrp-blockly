@@ -42,8 +42,8 @@ createWindow = () => {
 app.whenReady().then(() => {
   ipcMain.handle('load-appstate', () => {
     return {
-      appstate: JSON.parse(fs.readFileSync("./app/state.json")),
-      package: JSON.parse(fs.readFileSync("./package.json"))
+      appstate: JSON.parse(fs.readFileSync(path.join(__dirname, "../state.json"))),
+      package: JSON.parse(fs.readFileSync(path.join(__dirname, "../../package.json")))
     }
   });
   createWindow()

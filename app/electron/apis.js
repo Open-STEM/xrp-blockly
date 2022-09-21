@@ -14,7 +14,7 @@ global.share.ipcMain.handle('open-file', handleOpenFile);
 // If no default folder set, asks user for what
 // to save file as, and then sets the default folder
 async function handleSaveCode(event, req) {
-	const appState = JSON.parse(fs.readFileSync("./app/state.json"));
+	const appState = JSON.parse(fs.readFileSync(path.join(__dirname, "../state.json")));
 	if (appState.fullPath != "") {
 	  let filePath = path.join(appState.fullPath, req.filename);
 	  fs.writeFileSync(filePath, req.content);
@@ -43,7 +43,7 @@ async function handleSaveCode(event, req) {
 // Shows saveas dialog
 // Sets the default folder if not set already
 async function handleSaveAsCode(event, req) {
-	const appState = JSON.parse(fs.readFileSync("./app/state.json"));
+	const appState = JSON.parse(fs.readFileSync(path.join(__dirname, "../state.json")));
 	let result = saveAsReq(req, appState);
 
 	if (result === -1) {
@@ -133,6 +133,6 @@ function updateStateJson(appState, slice) {
 	for (const [key, value] of Object.entries(slice)) {
 		appState[key] = value;
 	}
-	fs.writeFileSync("./app/state.json", JSON.stringify(appState));
+	fs.writeFileSync(path.join(__dirname, "../state.json"), JSON.stringify(appState));
 	// TODO: update state in frontend?
 }
