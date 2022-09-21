@@ -19,7 +19,8 @@ createWindow = () => {
     sandbox: false,
     contextIsolation: true,
     show: false,
-    nodeIntegration: true
+    nodeIntegration: true,
+    icon: path.join(__dirname, '../icon.png')
   })
 
   mainWindow.webContents.on("did-finish-load", () => {
@@ -32,7 +33,7 @@ createWindow = () => {
   mainWindow.setMenu(null);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished

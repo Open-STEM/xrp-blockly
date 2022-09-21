@@ -1,13 +1,13 @@
 const fileNameEl = document.getElementById("filename");
 
 /* Get all elements */
-const newFileButton = document.getElementById("newfilebtn");
+// const newFileButton = document.getElementById("newfilebtn");
 const openFileButton = document.getElementById("openfilebtn");
 const saveButton = document.getElementById("savebtn");
 const saveAsButton = document.getElementById("saveasbtn");
 
 /* Link event listeners */
-newFileButton.addEventListener("click", newFileListener);
+// newFileButton.addEventListener("click", newFileListener);
 openFileButton.addEventListener("click", openFilelistener)
 saveButton.addEventListener("click", saveListener);
 saveAsButton.addEventListener("click", saveAsListener);
@@ -69,7 +69,8 @@ async function saveAsListener() {
 
 
 /* Color all icons on hover */
-let iconsArr = ["newfilebtn", "openfilebtn", "savebtn", "saveasbtn"];
+// let iconsArr = ["newfilebtn", "openfilebtn", "savebtn", "saveasbtn"];
+let iconsArr = ["openfilebtn", "savebtn", "saveasbtn"];
 iconsArr.forEach(x => {
     let el = document.getElementById(x);
     el.onmouseover = function() {

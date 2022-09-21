@@ -1,6 +1,6 @@
 {
-  "name": "fp-electron",
-  "version": "1.0.0",
+  "name": "first-plus",
+  "version": "0.0.1",
   "description": "First+ IDE",
   "main": "app/electron/main.js",
   "scripts": {
