@@ -1,5 +1,5 @@
 {
-  "name": "first-plus",
+  "name": "First+ IDE",
   "version": "0.0.1",
   "description": "First+ IDE",
   "main": "app/electron/main.js",
@@ -12,7 +12,7 @@
     "electron:package:win": "electron-builder -w -c.extraMetadata.main=app/electron/main.js",
     "electron:package:linux": "electron-builder -l -c.extraMetadata.main=app/electron/main.js"
   },
-  "author": "yew + sd",
+  "author": "FirstPlus",
   "license": "ISC",
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.65",

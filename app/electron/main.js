@@ -13,8 +13,8 @@ var mainWindow;
 createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    // width: 800,
+    // height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     },
@@ -24,6 +24,8 @@ createWindow = () => {
     nodeIntegration: true,
     icon: path.join(__dirname, '../icon.png')
   })
+
+  mainWindow.maximize();
 
   mainWindow.webContents.on("did-finish-load", () => {
     mainWindow.show();
