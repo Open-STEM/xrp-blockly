@@ -41,7 +41,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: /tmp/electron-packager/linux-x64/fp-electron-linux-x64/resources/app/node_modules/drivelist/build
+          files: /tmp/electron-packager/linux-x64/fp-electron-linux-x64/resources/app/node_modules/drivelist/build/*
 
 #       # Runs a set of commands using the runners shell
 #       - name: Build/release electron app
