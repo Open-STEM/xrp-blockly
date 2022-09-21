@@ -1,11 +1,13 @@
 // main.js
 
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, ipcMain, dialog } = require('electron')
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const drivelist = require('drivelist');
 var AsyncPolling = require('async-polling');
+
+if (require('electron-squirrel-startup')) return app.quit();
 
 var mainWindow;
 createWindow = () => {
