@@ -60,10 +60,7 @@
   "build": {
     "appId": "com.electron.firstplus",
     "productName": "First+ IDE",
-    "files": ["build/**/*", "node_modules/**/*"],
-    "directories": {
-      "buildResources": "app/electron/main.js"
-    },
+    "files": ["**/*", "node_modules/**/*"],
     "mac": {
       "target": "dmg"
     },
