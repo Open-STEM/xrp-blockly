@@ -22,7 +22,7 @@ createWindow = () => {
     contextIsolation: true,
     show: false,
     nodeIntegration: true,
-    icon: path.join(__dirname, '../icon.png')
+    icon: path.join(__dirname, '../xrp_icon.png')
   })
 
   mainWindow.maximize();
