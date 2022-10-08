@@ -10,7 +10,9 @@
     "make": "electron-forge make",
     "electron:package:mac": "electron-builder -m -c.extraMetadata.main=app/electron/main.js",
     "electron:package:win": "electron-builder -w -c.extraMetadata.main=app/electron/main.js",
-    "electron:package:linux": "electron-builder -l -c.extraMetadata.main=app/electron/main.js"
+    "electron:package:linux": "electron-builder -l -c.extraMetadata.main=app/electron/main.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "author": "XRP",
   "license": "ISC",
@@ -21,7 +23,7 @@
     "@electron-forge/maker-squirrel": "^6.0.0-beta.65",
     "@electron-forge/maker-zip": "^6.0.0-beta.65",
     "electron": "^20.1.0",
-    "electron-builder": "^23.3.3"
+    "electron-builder": "^23.6.0"
   },
   "dependencies": {
     "async-polling": "^0.2.1",
@@ -33,8 +35,8 @@
   "config": {
     "forge": {
       "packagerConfig": {
-	        "icon":"app/xrp-icon"
-	      },
+        "icon": "app/xrp-icon"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
@@ -62,7 +64,10 @@
   "build": {
     "appId": "com.electron.xrp",
     "productName": "XRP IDE",
-    "files": ["**/*", "node_modules/**/*"],
+    "files": [
+      "**/*",
+      "node_modules/**/*"
+    ],
     "mac": {
       "target": "dmg"
     },
