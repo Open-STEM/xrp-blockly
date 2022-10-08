@@ -10,7 +10,7 @@ global.share.ipcMain.handle('upload-code', handleUploadCode);
 global.share.ipcMain.handle('open-file', handleOpenFile);
 
 
-// Saves text to code.fp in default folder
+// Saves text to code.xrp in default folder
 // If no default folder set, asks user for what
 // to save file as, and then sets the default folder
 async function handleSaveCode(event, req) {
@@ -88,7 +88,7 @@ async function handleOpenFile(event, req) {
 		title: "Open File",
 		properties: ['openFile'],
 		// title: 'Open File',
-		filters: [{ name: 'First+', extensions: ['fp'] }]
+		filters: [{ name: 'XRP', extensions: ['xrp'] }]
 	});
 
 	if (filePath) {
@@ -115,7 +115,7 @@ function saveAsReq(req, appState) {
 	const filePath = dialog.showSaveDialogSync({
 		title: 'Save As',
 		// defaultPath: req.filename, // null if saveas req
-		filters: [{ name: 'First+', extensions: ['fp'] }]
+		filters: [{ name: 'XRP', extensions: ['xrp'] }]
 	});
 	if (filePath) {
 		updateStateJson(appState, { fullPath: path.dirname(filePath) });

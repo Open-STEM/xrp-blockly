@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>First+ IDE</title>
+  <title>XRP IDE</title>
   <link rel="stylesheet" href="app/css/bootstrap.min.css">
   <link rel="stylesheet" href="app/css/fontawesome/css/all.css">
   <link rel="stylesheet" href="app/css/index.css">
@@ -715,22 +715,22 @@
           <sep></sep>
           <category name="Variables" colour="#a55b80" custom="VARIABLE"></category>
           <category name="Functions" colour="#995ba5" custom="PROCEDURE"></category>
-          <category name="First+" colour="#a55b80">
-            <block type="fp_setefforts">
+          <category name="XRP" colour="#a55b80">
+            <block type="xrp_setefforts">
               <field name="val1">0</field>
             </block>
-            <block type="fp_seteffort">
+            <block type="xrp_seteffort">
               <field name="val1">0</field>
               <field name="val2">0</field>
             </block>
-            <block type="fp_straight">
+            <block type="xrp_straight">
               <field name="dist">0</field>
             </block>
-            <block type="fp_turn">
+            <block type="xrp_turn">
               <field name="angle">0</field>
             </block>
-            <block type="fp_getsonardist"></block>
-            <block type="fp_sleep">
+            <block type="xrp_getsonardist"></block>
+            <block type="xrp_sleep">
               <field name="TIME">0</field>
             </block>
           </category>
@@ -739,7 +739,7 @@
       <div class="col">
         <!-- WORKSPACE -->
         <xml xmlns="https://developers.google.com/blockly/xml" id="workspaceBlocks" style="display: none">
-          <variables><variable id="sV[YiybSVpx-~;1;D:vv">sides</variable></variables><block type="procedures_defnoreturn" id="IsxZeLy(~T83p5;F]|/z" x="63" y="38"><mutation><arg name="sides" varid="sV[YiybSVpx-~;1;D:vv"></arg></mutation><field name="NAME">polygon</field><comment pinned="false" h="80" w="160">Draw a polygon with any given sides</comment><statement name="STACK"><block type="controls_repeat_ext" id="BrMKqWjxOkTv)Nb0:19X"><value name="TIMES"><block type="variables_get" id="FXg,ZI8c]uXY5M**o,4o"><field name="VAR" id="sV[YiybSVpx-~;1;D:vv">sides</field></block></value><statement name="DO"><block type="fp_straight_val" id="{LmoLT:Ok841t}OJ.KK}"><value name="dist"><block type="math_number" id="gW#L*x3VXJ8}B_n#qI77"><field name="NUM">150</field></block></value><next><block type="fp_turn_val" id="E,,A#fLe0lZMJc+N.Hf?"><value name="angle"><block type="math_arithmetic" id="j;O(Fx/%;`NtZNs(qL6="><field name="OP">DIVIDE</field><value name="A"><shadow type="math_number" id="{/Drmz[VsPo89q%PwaVZ"><field name="NUM">1</field></shadow><block type="math_number" id="el_J8yGp-ywNqRw~22Jc"><field name="NUM">360</field></block></value><value name="B"><shadow type="math_number" id="n!g~4v1Nsv3xP$n_tL[@"><field name="NUM">1</field></shadow><block type="variables_get" id="v1y!,?e!$9Fq*%J`t|4T"><field name="VAR" id="sV[YiybSVpx-~;1;D:vv">sides</field></block></value></block></value></block></next></block></statement></block></statement></block>
+          <variables><variable id="sV[YiybSVpx-~;1;D:vv">sides</variable></variables><block type="procedures_defnoreturn" id="IsxZeLy(~T83p5;F]|/z" x="63" y="38"><mutation><arg name="sides" varid="sV[YiybSVpx-~;1;D:vv"></arg></mutation><field name="NAME">polygon</field><comment pinned="false" h="80" w="160">Draw a polygon with any given sides</comment><statement name="STACK"><block type="controls_repeat_ext" id="BrMKqWjxOkTv)Nb0:19X"><value name="TIMES"><block type="variables_get" id="FXg,ZI8c]uXY5M**o,4o"><field name="VAR" id="sV[YiybSVpx-~;1;D:vv">sides</field></block></value><statement name="DO"><block type="xrp_straight_val" id="{LmoLT:Ok841t}OJ.KK}"><value name="dist"><block type="math_number" id="gW#L*x3VXJ8}B_n#qI77"><field name="NUM">150</field></block></value><next><block type="xrp_turn_val" id="E,,A#fLe0lZMJc+N.Hf?"><value name="angle"><block type="math_arithmetic" id="j;O(Fx/%;`NtZNs(qL6="><field name="OP">DIVIDE</field><value name="A"><shadow type="math_number" id="{/Drmz[VsPo89q%PwaVZ"><field name="NUM">1</field></shadow><block type="math_number" id="el_J8yGp-ywNqRw~22Jc"><field name="NUM">360</field></block></value><value name="B"><shadow type="math_number" id="n!g~4v1Nsv3xP$n_tL[@"><field name="NUM">1</field></shadow><block type="variables_get" id="v1y!,?e!$9Fq*%J`t|4T"><field name="VAR" id="sV[YiybSVpx-~;1;D:vv">sides</field></block></value></block></value></block></next></block></statement></block></statement></block>
         </xml>
       </div>
     </div>
@@ -771,9 +771,9 @@
     <script src="blocks/analog_input.js"></script> -->
 
 
-    <script src="app/src/fp_blocks.js"></script>
-    <script src="app/src/fp_blocks_python.js"></script>
-    <script src="app/src/fp_file.js"></script>
+    <script src="app/src/xrp_blocks.js"></script>
+    <script src="app/src/xrp_blocks_python.js"></script>
+    <script src="app/src/xrp_file.js"></script>
     <script src="app/src/ui/robotinteraction.js"></script>
     <script src="app/src/ui/blocklyworkspace.js"></script>
     <script src="app/src/ui/pythonregion.js"></script>

@@ -35,18 +35,18 @@ function getTimestamp() {
 }
 
 /**
- * Generate FP file contents
+ * Generate XRP file contents
  * @param {String} code String of generated python code
  * @param {JSON} blks Current workspace blocks, including vars, as JSON
- * @returns {String} fpfile to be written with information
+ * @returns {String} xrpfile to be written with information
  */
-function makefp_content(code, blks) {
-    var fpstring = '';
+function makexrp_content(code, blks) {
+    var xrpstring = '';
     dtime = getTimestamp();
     hash = hashCode(code);
     strblks = JSON.stringify(blks);
-    fpstring = code + '\n\n\n## ' + dtime + '\n## ' + hash + '\n## ' + strblks;
-    return fpstring;
+    xrpstring = code + '\n\n\n## ' + dtime + '\n## ' + hash + '\n## ' + strblks;
+    return xrpstring;
 }
 
 /**
@@ -65,16 +65,16 @@ function getBlockLine(file){
 
 
 /**
- * Read in fp file
- * @param {String} file fp file as string object
+ * Read in xrp file
+ * @param {String} file xrp file as string object
  */
-function readfp(file) {
+function readxrp(file) {
     // const re = /##\s(?<info>.*)$/g;
     // matches = file.matchAll(re);
     // console.log({ matches })
     // console.log({file})
     var lastLine = getBlockLine(file);
-    // const dummyval = '{"blocks":{"languageVersion":0,"blocks":[{"type":"procedures_defnoreturn","id":"IsxZeLy(~T83p5;F]|/z","x":63,"y":38,"extraState":{"params":[{"name":"sides","id":"sV[YiybSVpx-~;1;D:vv"}]},"icons":{"comment":{"text":"Draw a polygon with any given sides","pinned":false,"height":80,"width":160}},"fields":{"NAME":"polygon"},"inputs":{"STACK":{"block":{"type":"controls_repeat_ext","id":"BrMKqWjxOkTv)Nb0:19X","inputs":{"TIMES":{"block":{"type":"variables_get","id":"FXg,ZI8c]uXY5M**o,4o","fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}}}},"DO":{"block":{"type":"fp_straight_val","id":"{LmoLT:Ok841t}OJ.KK}","inputs":{"dist":{"block":{"type":"math_number","id":"gW#L*x3VXJ8}B_n#qI77","fields":{"NUM":150}}}},"next":{"block":{"type":"fp_turn_val","id":"E,,A#fLe0lZMJc+N.Hf?","inputs":{"angle":{"block":{"type":"math_arithmetic","id":"j;O(Fx/%;`NtZNs(qL6=","fields":{"OP":"DIVIDE"},"inputs":{"A":{"shadow":{"type":"math_number","id":"{/Drmz[VsPo89q%PwaVZ","fields":{"NUM":1}},"block":{"type":"math_number","id":"el_J8yGp-ywNqRw~22Jc","fields":{"NUM":360}}},"B":{"shadow":{"type":"math_number","id":"n!g~4v1Nsv3xP$n_tL[@","fields":{"NUM":1}},"block":{"type":"variables_get","id":"v1y!,?e!$9Fq*%J`t|4T","fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}}}}}}}}}}}}}}}}},{"type":"variables_set","id":"^Xb)r_-gQSVXA^+!@Kdt","x":79,"y":268,"fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}},"inputs":{"VALUE":{"block":{"type":"fp_getsonardist","id":"}Fzzyvn=v,tly7ZH8wJW"}}}}]},"variables":[{"name":"sides","id":"sV[YiybSVpx-~;1;D:vv"}]}';
+    // const dummyval = '{"blocks":{"languageVersion":0,"blocks":[{"type":"procedures_defnoreturn","id":"IsxZeLy(~T83p5;F]|/z","x":63,"y":38,"extraState":{"params":[{"name":"sides","id":"sV[YiybSVpx-~;1;D:vv"}]},"icons":{"comment":{"text":"Draw a polygon with any given sides","pinned":false,"height":80,"width":160}},"fields":{"NAME":"polygon"},"inputs":{"STACK":{"block":{"type":"controls_repeat_ext","id":"BrMKqWjxOkTv)Nb0:19X","inputs":{"TIMES":{"block":{"type":"variables_get","id":"FXg,ZI8c]uXY5M**o,4o","fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}}}},"DO":{"block":{"type":"xrp_straight_val","id":"{LmoLT:Ok841t}OJ.KK}","inputs":{"dist":{"block":{"type":"math_number","id":"gW#L*x3VXJ8}B_n#qI77","fields":{"NUM":150}}}},"next":{"block":{"type":"xrp_turn_val","id":"E,,A#fLe0lZMJc+N.Hf?","inputs":{"angle":{"block":{"type":"math_arithmetic","id":"j;O(Fx/%;`NtZNs(qL6=","fields":{"OP":"DIVIDE"},"inputs":{"A":{"shadow":{"type":"math_number","id":"{/Drmz[VsPo89q%PwaVZ","fields":{"NUM":1}},"block":{"type":"math_number","id":"el_J8yGp-ywNqRw~22Jc","fields":{"NUM":360}}},"B":{"shadow":{"type":"math_number","id":"n!g~4v1Nsv3xP$n_tL[@","fields":{"NUM":1}},"block":{"type":"variables_get","id":"v1y!,?e!$9Fq*%J`t|4T","fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}}}}}}}}}}}}}}}}},{"type":"variables_set","id":"^Xb)r_-gQSVXA^+!@Kdt","x":79,"y":268,"fields":{"VAR":{"id":"sV[YiybSVpx-~;1;D:vv"}},"inputs":{"VALUE":{"block":{"type":"xrp_getsonardist","id":"}Fzzyvn=v,tly7ZH8wJW"}}}}]},"variables":[{"name":"sides","id":"sV[YiybSVpx-~;1;D:vv"}]}';
     // const dummyjson = JSON.parse(dummyval);
     var jsonBlocks = JSON.parse(lastLine);
     return jsonBlocks;

@@ -1,4 +1,4 @@
-Blockly.Blocks['fp_encoder'] = {
+Blockly.Blocks['xrp_encoder'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Encoder:")
@@ -14,7 +14,7 @@ Blockly.Blocks['fp_encoder'] = {
   }
 };
 
-Blockly.Blocks['fp_motor'] = {
+Blockly.Blocks['xrp_motor'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Motor:")
@@ -24,7 +24,7 @@ Blockly.Blocks['fp_motor'] = {
       .appendField("Reversed?")
       .appendField(new Blockly.FieldCheckbox("FALSE"), "REVERSED");
     this.appendValueInput("ENCODER")
-      .setCheck("fp_encoder")
+      .setCheck("xrp_encoder")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Encoder");
     this.setOutput(true, null);
@@ -34,17 +34,17 @@ Blockly.Blocks['fp_motor'] = {
   }
 };
 
-Blockly.Blocks['fp_drivebase'] = {
+Blockly.Blocks['xrp_drivebase'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Drivebase:")
       .appendField(new Blockly.FieldTextInput("myDrivebase"), "NAME");
     this.appendValueInput("MOTOR_1")
-      .setCheck("fp_motor")
+      .setCheck("xrp_motor")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Motor 1");
     this.appendValueInput("MOTOR_2")
-      .setCheck("fp_motor")
+      .setCheck("xrp_motor")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Motor 2");
     this.setOutput(true, null);
@@ -54,17 +54,17 @@ Blockly.Blocks['fp_drivebase'] = {
   }
 };
 
-Blockly.Blocks['fp_drivebase'] = {
+Blockly.Blocks['xrp_drivebase'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Drivebase:")
       .appendField(new Blockly.FieldTextInput("myDrivebase"), "NAME");
     this.appendValueInput("MOTOR_1")
-      .setCheck("fp_motor")
+      .setCheck("xrp_motor")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Motor 1");
     this.appendValueInput("MOTOR_2")
-      .setCheck("fp_motor")
+      .setCheck("xrp_motor")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Motor 2");
     this.setOutput(true, null);
@@ -74,7 +74,7 @@ Blockly.Blocks['fp_drivebase'] = {
   }
 };
 
-Blockly.Blocks['fp_drivebase_effort'] = {
+Blockly.Blocks['xrp_drivebase_effort'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Set Effort");
@@ -84,7 +84,7 @@ Blockly.Blocks['fp_drivebase_effort'] = {
       .appendField("Effort 2:")
       .appendField(new Blockly.FieldNumber(0, -1, 1), "EFFORT2");
     this.appendValueInput("DRIVEBASE")
-      .setCheck("fp_drivebase")
+      .setCheck("xrp_drivebase")
       .setAlign(Blockly.ALIGN_RIGHT)
       .appendField("Drivebase:");
     this.setPreviousStatement(true, null);
@@ -95,10 +95,10 @@ Blockly.Blocks['fp_drivebase_effort'] = {
   }
 };
 
-Blockly.Blocks['fp_getpos'] = {
+Blockly.Blocks['xrp_getpos'] = {
   init: function () {
     this.appendValueInput("MOTOR")
-      .setCheck("fp_motor")
+      .setCheck("xrp_motor")
       .appendField("Get Motor Position");
     this.setOutput(true, null);
     this.setColour(230);
@@ -107,10 +107,10 @@ Blockly.Blocks['fp_getpos'] = {
   }
 };
 
-Blockly.Blocks['fp_reset_drivebase'] = {
+Blockly.Blocks['xrp_reset_drivebase'] = {
   init: function () {
     this.appendValueInput("DRIVEBASE")
-      .setCheck("fp_drivebase")
+      .setCheck("xrp_drivebase")
       .appendField("Reset Drivebase Positions");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -120,7 +120,7 @@ Blockly.Blocks['fp_reset_drivebase'] = {
   }
 };
 
-Blockly.Blocks['fp_seteffort'] = {
+Blockly.Blocks['xrp_seteffort'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Set Effort")
@@ -134,7 +134,7 @@ Blockly.Blocks['fp_seteffort'] = {
   }
 };
 
-Blockly.Blocks['fp_straight'] = {
+Blockly.Blocks['xrp_straight'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Drive Straight")
@@ -147,7 +147,7 @@ Blockly.Blocks['fp_straight'] = {
   }
 };
 
-Blockly.Blocks['fp_turn'] = {
+Blockly.Blocks['xrp_turn'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Turn")
@@ -160,7 +160,7 @@ Blockly.Blocks['fp_turn'] = {
   }
 };
 
-Blockly.Blocks['fp_getsonardist'] = {
+Blockly.Blocks['xrp_getsonardist'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Sonar Distance");
@@ -171,7 +171,7 @@ Blockly.Blocks['fp_getsonardist'] = {
   }
 };
 
-Blockly.Blocks['fp_sleep'] = {
+Blockly.Blocks['xrp_sleep'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Sleep")
@@ -184,7 +184,7 @@ Blockly.Blocks['fp_sleep'] = {
   }
 };
 
-Blockly.Blocks['fp_setefforts'] = {
+Blockly.Blocks['xrp_setefforts'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Set Efforts")
@@ -198,7 +198,7 @@ Blockly.Blocks['fp_setefforts'] = {
 };
 
 
-Blockly.Blocks['fp_turn_val'] = {
+Blockly.Blocks['xrp_turn_val'] = {
   init: function () {
     this.appendValueInput("angle")
       .setCheck("Number")
@@ -211,7 +211,7 @@ Blockly.Blocks['fp_turn_val'] = {
   }
 };
 
-Blockly.Blocks['fp_straight_val'] = {
+Blockly.Blocks['xrp_straight_val'] = {
   init: function () {
     this.appendValueInput("dist")
       .setCheck("Number")

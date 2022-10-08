@@ -1,4 +1,4 @@
-Blockly.Python['fp_encoder'] = function (block) {
+Blockly.Python['xrp_encoder'] = function (block) {
   var text_name = block.getFieldValue('NAME');
   var dropdown_pin_a = block.getFieldValue('PIN_A');
   var dropdown_pin_b = block.getFieldValue('PIN_B');
@@ -8,7 +8,7 @@ Blockly.Python['fp_encoder'] = function (block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-Blockly.Python['fp_motor'] = function (block) {
+Blockly.Python['xrp_motor'] = function (block) {
   var text_name = block.getFieldValue('NAME');
   var dropdown_pin_a = block.getFieldValue('PIN_A');
   var dropdown_pin_b = block.getFieldValue('PIN_B');
@@ -19,7 +19,7 @@ Blockly.Python['fp_motor'] = function (block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-Blockly.Python['fp_drivebase'] = function (block) {
+Blockly.Python['xrp_drivebase'] = function (block) {
   var text_name = block.getFieldValue('NAME');
   var value_motor_1 = Blockly.Python.valueToCode(block, 'MOTOR_1', Blockly.Python.ORDER_ATOMIC);
   var value_motor_2 = Blockly.Python.valueToCode(block, 'MOTOR_2', Blockly.Python.ORDER_ATOMIC);
@@ -30,7 +30,7 @@ Blockly.Python['fp_drivebase'] = function (block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-Blockly.Python['fp_drivebase_effort'] = function (block) {
+Blockly.Python['xrp_drivebase_effort'] = function (block) {
   var number_effort1 = block.getFieldValue('EFFORT1');
   var number_effort2 = block.getFieldValue('EFFORT2');
   var value_drivebase = Blockly.Python.valueToCode(block, 'DRIVEBASE', Blockly.Python.ORDER_ATOMIC);
@@ -38,7 +38,7 @@ Blockly.Python['fp_drivebase_effort'] = function (block) {
   return code;
 };
 
-Blockly.Python['fp_getpos'] = function (block) {
+Blockly.Python['xrp_getpos'] = function (block) {
   // Get the name of the connect motor block
   var value_name = Blockly.Python.valueToCode(block, 'MOTOR', Blockly.Python.ORDER_ATOMIC);
   var code = `${value_name}.getPos()`;
@@ -46,7 +46,7 @@ Blockly.Python['fp_getpos'] = function (block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-Blockly.Python['fp_reset_drivebase'] = function (block) {
+Blockly.Python['xrp_reset_drivebase'] = function (block) {
   var value_drivebase = Blockly.Python.valueToCode(block, 'DRIVEBASE', Blockly.Python.ORDER_ATOMIC);
   var code = `${value_drivebase}.setPos()\n`;
   return code;
@@ -54,7 +54,7 @@ Blockly.Python['fp_reset_drivebase'] = function (block) {
 
 // ---- NEWER LIB -------
 
-Blockly.Python['fp_seteffort'] = function (block) {
+Blockly.Python['xrp_seteffort'] = function (block) {
   var number_val1 = block.getFieldValue('val1');
   var number_val2 = block.getFieldValue('val2');
   // TODO: Assemble Python into code variable.
@@ -62,35 +62,35 @@ Blockly.Python['fp_seteffort'] = function (block) {
   return code;
 };
 
-Blockly.Python['fp_straight'] = function (block) {
+Blockly.Python['xrp_straight'] = function (block) {
   var number_dist = block.getFieldValue('dist');
   // TODO: Assemble Python into code variable.
   var code = `drivetrain.go_straight(${number_dist})\n`;
   return code;
 };
 
-Blockly.Python['fp_turn'] = function (block) {
+Blockly.Python['xrp_turn'] = function (block) {
   var number_angle = block.getFieldValue('angle');
   // TODO: Assemble Python into code variable.
   var code = `drivetrain.go_turn(${number_angle})\n`;
   return code;
 };
 
-Blockly.Python['fp_getsonardist'] = function (block) {
+Blockly.Python['xrp_getsonardist'] = function (block) {
   // TODO: Assemble Python into code variable.
   var code = `sonar.distance`;
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
 
-Blockly.Python['fp_sleep'] = function (block) {
+Blockly.Python['xrp_sleep'] = function (block) {
   var number_time = block.getFieldValue('TIME');
   // TODO: Assemble Python into code variable.
   var code = `time.sleep(${number_time})\n`;
   return code;
 };
 
-Blockly.Python['fp_setefforts'] = function (block) {
+Blockly.Python['xrp_setefforts'] = function (block) {
   var number_val1 = block.getFieldValue('val1');
   // TODO: Assemble Python into code variable.
   var code = `drivetrain.set_effort(${number_val1})\n`;
@@ -98,14 +98,14 @@ Blockly.Python['fp_setefforts'] = function (block) {
 };
 
 
-Blockly.Python['fp_turn_val'] = function (block) {
+Blockly.Python['xrp_turn_val'] = function (block) {
   var value_angle = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = `drivetrain.go_turn(${value_angle})\n`;
   return code;
 };
 
-Blockly.Python['fp_straight_val'] = function (block) {
+Blockly.Python['xrp_straight_val'] = function (block) {
   var value_dist = Blockly.Python.valueToCode(block, 'dist', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
   var code = `drivetrain.go_straight(${value_dist})\n`;

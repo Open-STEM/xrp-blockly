@@ -23,7 +23,7 @@ async function openFilelistener() {
     console.log(result);
 
     if (result.status === 200) {
-        let newLib = readfp(result.payload.fileContent);
+        let newLib = readxrp(result.payload.fileContent);
         Blockly.serialization.workspaces.load(newLib,workspace);
 
         fileNameEl.innerHTML = result.payload.fileName;
@@ -34,10 +34,10 @@ async function openFilelistener() {
 
 async function saveListener() {
     let outputCode = document.getElementById("codeLine").innerHTML;
-    let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
+    let fileContent = makexrp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
     let result = await window.api.saveCode({
         content: fileContent,
-        filename: fileNameEl.innerHTML === 'Unsaved File' ? 'code.fp' : `${fileNameEl.innerHTML}.fp`
+        filename: fileNameEl.innerHTML === 'Unsaved File' ? 'code.xrp' : `${fileNameEl.innerHTML}.xrp`
     });
 
     if (result.status === 200) {
@@ -51,10 +51,10 @@ async function saveListener() {
 
 async function saveAsListener() {
     let outputCode = document.getElementById("codeLine").innerHTML;
-    let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
+    let fileContent = makexrp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
     let result = await window.api.saveAsCode({
         content: fileContent,
-        filename: 'code.fp'
+        filename: 'code.xrp'
     });
 
     console.log(result);

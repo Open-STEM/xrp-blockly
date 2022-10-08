@@ -1,7 +1,7 @@
 {
-  "name": "First+IDE",
+  "name": "XRP-IDE",
   "version": "0.0.1",
-  "description": "First+ IDE",
+  "description": "XRP IDE",
   "main": "app/electron/main.js",
   "scripts": {
     "test": "electron .",
@@ -12,7 +12,7 @@
     "electron:package:win": "electron-builder -w -c.extraMetadata.main=app/electron/main.js",
     "electron:package:linux": "electron-builder -l -c.extraMetadata.main=app/electron/main.js"
   },
-  "author": "FirstPlus",
+  "author": "XRP",
   "license": "ISC",
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.65",
@@ -33,13 +33,13 @@
   "config": {
     "forge": {
       "packagerConfig": {
-	        "icon":"app/fp-icon"
+	        "icon":"app/xrp-icon"
 	      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "fp_electron"
+            "name": "xrp_electron"
           }
         },
         {
@@ -60,8 +60,8 @@
     }
   },
   "build": {
-    "appId": "com.electron.firstplus",
-    "productName": "First+ IDE",
+    "appId": "com.electron.xrp",
+    "productName": "XRP IDE",
     "files": ["**/*", "node_modules/**/*"],
     "mac": {
       "target": "dmg"

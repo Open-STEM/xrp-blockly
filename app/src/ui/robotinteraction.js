@@ -13,7 +13,7 @@ function robotHandleMouseout() {
 
 async function robotHandleClick() {
     const outputCode = document.getElementById("codeLine").innerHTML;
-    let fileContent = makefp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
+    let fileContent = makexrp_content(outputCode, Blockly.serialization.workspaces.save(workspace));
     let result = await window.api.uploadCode(fileContent);
     console.log(result);
     
