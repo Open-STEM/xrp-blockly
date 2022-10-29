@@ -113,7 +113,7 @@ Blockly.Blocks['xrp_seteffort'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(0);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -124,7 +124,7 @@ Blockly.Blocks['xrp_getsonardist'] = {
     this.appendDummyInput()
       .appendField("Sonar Distance");
     this.setOutput(true, null);
-    this.setColour(230);
+    this.setColour(60);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -150,7 +150,7 @@ Blockly.Blocks['xrp_setefforts'] = {
       .appendField(new Blockly.FieldNumber(0), "val1");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -164,7 +164,7 @@ Blockly.Blocks['xrp_turn'] = {
       .appendField("Turn");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -181,7 +181,7 @@ Blockly.Blocks['xrp_turn_effort'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -195,7 +195,7 @@ Blockly.Blocks['xrp_straight'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -212,7 +212,7 @@ Blockly.Blocks['xrp_straight_effort'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -226,7 +226,7 @@ Blockly.Blocks['xrp_led_br'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(200);
+    this.setColour(190);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -240,7 +240,7 @@ Blockly.Blocks['xrp_led_co'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(200);
+    this.setColour(190);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -253,7 +253,7 @@ Blockly.Blocks['xrp_stop_motors'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(0);
  this.setTooltip("");
  this.setHelpUrl("");
   }
@@ -266,7 +266,7 @@ Blockly.Blocks['xrp_button_pressed'] = {
       .appendField(new Blockly.FieldDropdown([["GP20", "GP20"], ["GP21", "GP21"]]), "PIN")
     this.setInputsInline(true);
     this.setOutput(true, null);
-    this.setColour(200);
+    this.setColour(190);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -280,7 +280,7 @@ Blockly.Blocks['xrp_servo_deg'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(190);
+    this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -291,7 +291,7 @@ Blockly.Blocks['xrp_l_refl'] = {
     this.appendDummyInput()
       .appendField("Get Left Reflectance");
     this.setOutput(true, null);
-    this.setColour(230);
+    this.setColour(60);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -302,7 +302,7 @@ Blockly.Blocks['xrp_r_refl'] = {
     this.appendDummyInput()
       .appendField("Get Right Reflectance");
     this.setOutput(true, null);
-    this.setColour(230);
+    this.setColour(60);
     this.setTooltip("");
     this.setHelpUrl("");
   }

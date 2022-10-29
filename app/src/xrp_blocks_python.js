@@ -57,15 +57,12 @@ Blockly.Python['xrp_reset_drivebase'] = function (block) {
 Blockly.Python['xrp_seteffort'] = function (block) {
   var value_l = Blockly.Python.valueToCode(block, 'LEFT', Blockly.Python.ORDER_ATOMIC);
   var value_r = Blockly.Python.valueToCode(block, 'RIGHT', Blockly.Python.ORDER_ATOMIC);
-  // TODO: Assemble Python into code variable.
   var code = `drivetrain.set_effort(${value_l}, ${value_r})\n`;
   return code;
 };
 
 Blockly.Python['xrp_getsonardist'] = function (block) {
-  // TODO: Assemble Python into code variable.
   var code = `sonar.distance`;
-  // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
 
