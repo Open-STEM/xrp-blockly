@@ -54,26 +54,6 @@ Blockly.Blocks['xrp_drivebase'] = {
   }
 };
 
-Blockly.Blocks['xrp_drivebase'] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("Drivebase:")
-      .appendField(new Blockly.FieldTextInput("myDrivebase"), "NAME");
-    this.appendValueInput("MOTOR_1")
-      .setCheck("xrp_motor")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Motor 1");
-    this.appendValueInput("MOTOR_2")
-      .setCheck("xrp_motor")
-      .setAlign(Blockly.ALIGN_RIGHT)
-      .appendField("Motor 2");
-    this.setOutput(true, null);
-    this.setColour(210);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
-};
-
 Blockly.Blocks['xrp_drivebase_effort'] = {
   init: function () {
     this.appendDummyInput()
@@ -121,42 +101,21 @@ Blockly.Blocks['xrp_reset_drivebase'] = {
 };
 
 Blockly.Blocks['xrp_seteffort'] = {
-  init: function () {
+  init: function() {
     this.appendDummyInput()
-      .appendField("Set Effort")
-      .appendField(new Blockly.FieldNumber(0, -1, 1), "val1")
-      .appendField(new Blockly.FieldNumber(0, -1, 1), "val2");
+        .appendField("Set Effort");
+    this.appendValueInput("LEFT")
+        .setCheck(null)
+        .appendField("L:");
+    this.appendValueInput("RIGHT")
+        .setCheck(null)
+        .appendField("R:");
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['xrp_straight'] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("Drive Straight")
-      .appendField(new Blockly.FieldNumber(0), "dist");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['xrp_turn'] = {
-  init: function () {
-    this.appendDummyInput()
-      .appendField("Turn")
-      .appendField(new Blockly.FieldNumber(0), "angle");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
+ this.setTooltip("");
+ this.setHelpUrl("");
   }
 };
 
@@ -198,7 +157,7 @@ Blockly.Blocks['xrp_setefforts'] = {
 };
 
 
-Blockly.Blocks['xrp_turn_val'] = {
+Blockly.Blocks['xrp_turn'] = {
   init: function () {
     this.appendValueInput("angle")
       .setCheck("Number")
@@ -211,7 +170,24 @@ Blockly.Blocks['xrp_turn_val'] = {
   }
 };
 
-Blockly.Blocks['xrp_straight_val'] = {
+Blockly.Blocks['xrp_turn_effort'] = {
+  init: function () {
+    this.appendValueInput("angle")
+      .setCheck("Number")
+      .appendField("Turn");
+    this.appendValueInput("effort")
+      .setCheck("Number")
+      .appendField("Effort");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['xrp_straight'] = {
   init: function () {
     this.appendValueInput("dist")
       .setCheck("Number")
@@ -219,6 +195,113 @@ Blockly.Blocks['xrp_straight_val'] = {
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['xrp_straight_effort'] = {
+  init: function () {
+    this.appendValueInput("dist")
+      .setCheck("Number")
+      .appendField("Drive Straight");
+    this.appendValueInput("effort")
+      .setCheck("Number")
+      .appendField("Effort");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['xrp_led_br'] = {
+  init: function () {
+    this.appendValueInput("brightness")
+      .setCheck("Number")
+      .appendField("LED Brightness");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(200);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['xrp_led_co'] = {
+  init: function() {
+    this.appendValueInput("color")
+        .setCheck(null)
+        .appendField("LED Color");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(200);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['xrp_stop_motors'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Stop Motors");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['xrp_button_pressed'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Button Pressed:")
+      .appendField(new Blockly.FieldDropdown([["GP20", "GP20"], ["GP21", "GP21"]]), "PIN")
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(200);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['xrp_servo_deg'] = {
+  init: function () {
+    this.appendValueInput("degrees")
+      .setCheck("Number")
+      .appendField('Set Servo \xB0:');
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(190);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['xrp_l_refl'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Get Left Reflectance");
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['xrp_r_refl'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Get Right Reflectance");
+    this.setOutput(true, null);
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
