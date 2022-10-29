@@ -128,6 +128,12 @@ Blockly.Python['xrp_led_br'] = function (block) {
   return code;
 };
 
+Blockly.Python['xrp_led_co'] = function (block) {
+  var value_color_hex = Blockly.Python.valueToCode(block, 'color', Blockly.Python.ORDER_ATOMIC);
+  var code = `led.set_color(${value_color_hex})`;
+  return code;
+};
+
 Blockly.Python['xrp_servo_deg'] = function (block) {
   var value_degrees = Blockly.Python.valueToCode(block, 'degrees', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
