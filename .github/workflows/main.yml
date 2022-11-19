@@ -28,7 +28,7 @@ jobs:
       - name: Install Packages
         run: npm install
       - name: Build
-        run: npm run dist --publish=never
+        run: npm run dist
       - uses: actions/upload-artifact@v2
         with:
           name: XRP-Blockly-Installer-${{ matrix.artifact-name }}

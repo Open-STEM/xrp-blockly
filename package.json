@@ -12,7 +12,7 @@
     "electron:package:win": "electron-builder -w -c.extraMetadata.main=app/electron/main.js",
     "electron:package:linux": "electron-builder -l -c.extraMetadata.main=app/electron/main.js",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder --publish=never"
   },
   "author": "XRP <gr-XRP@wpi.edu>",
   "license": "ISC",
