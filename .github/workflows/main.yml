@@ -47,4 +47,4 @@ jobs:
         run: |
           gh release upload --clobber "${GITHUB_REF#refs/tags/}" dist/*/* containers/utils/uploaded.py
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

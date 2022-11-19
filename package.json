@@ -14,7 +14,7 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
-  "author": "XRP",
+  "author": "XRP <gr-XRP@wpi.edu>",
   "license": "ISC",
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.65",
