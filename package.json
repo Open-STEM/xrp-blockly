@@ -1,7 +1,7 @@
 {
-  "name": "XRP-IDE",
+  "name": "XRP-Blockly",
   "version": "0.0.1",
-  "description": "XRP IDE",
+  "description": "XRP Blockly",
   "main": "app/electron/main.js",
   "scripts": {
     "test": "electron .",
