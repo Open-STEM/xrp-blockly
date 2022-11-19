@@ -28,7 +28,7 @@ jobs:
       - name: Install Packages
         run: npm install
       - name: Build
-        run: npm run dist
+        run: GH_TOKEN=${{ secrets.GH_TOKEN }} npm run dist
       - uses: actions/upload-artifact@v2
         with:
           name: XRP-Blockly-Installer-${{ matrix.artifact-name }}
