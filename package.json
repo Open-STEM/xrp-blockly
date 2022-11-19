@@ -63,7 +63,7 @@
   },
   "build": {
     "appId": "com.electron.xrp",
-    "productName": "XRP IDE",
+    "productName": "XRP Blockly",
     "files": [
       "**/*",
       "node_modules/**/*"
