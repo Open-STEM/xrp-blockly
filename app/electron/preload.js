@@ -12,6 +12,7 @@ contextBridge.exposeInMainWorld(
     openFile: () => ipcRenderer.invoke('open-file'),
     uploadCode: (code) => ipcRenderer.invoke('upload-code', code),
     loadAppState: () => ipcRenderer.invoke('load-appstate'),
-    robotConnected: (callback) => ipcRenderer.on('bot-connected', callback)
+    robotConnected: (callback) => ipcRenderer.on('bot-connected', callback),
+    robotCOMStream: (callback) => ipcRenderer.on('bot-com-port', callback)
   }
 );

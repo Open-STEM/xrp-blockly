@@ -5,9 +5,30 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const drivelist = require('drivelist');
+const { SerialPort } = require('serialport');
 var AsyncPolling = require('async-polling');
 
 if (require('electron-squirrel-startup')) return app.quit();
+
+var serialLineString = ""
+
+SerialPort.list()
+  .then(x => {
+    if (x.length > 0) {
+      console.log(x);
+      const serialport = new SerialPort({ path: x[0]['path'], baudRate: 9600 })
+      // Switches the port into "flowing mode"
+      serialport.on('readable', function () {
+        // serialLineString += serialport.read().toString();
+        // console.log("New one");
+        // console.log(serialLineString);
+        mainWindow.webContents.send('bot-com-port', serialport.read().toString());
+      })
+    } else {
+      console.log("No devies plugged in");
+    }
+  })
+// console.log(availablePorts);
 
 var mainWindow;
 createWindow = () => {
@@ -37,7 +58,7 @@ createWindow = () => {
   mainWindow.setMenu(null);
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished

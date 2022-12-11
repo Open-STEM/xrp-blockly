@@ -39,3 +39,12 @@ toggleIconsArr.forEach(x => {
         el.style.color = '';
     }
 });
+
+var streamToDisplay = ""
+const charactersToShow = 100;
+
+window.api.robotCOMStream((_event, value) => {
+    streamToDisplay += value;
+    streamToDisplay = streamToDisplay.slice(-charactersToShow);
+    console.log(streamToDisplay);
+});
