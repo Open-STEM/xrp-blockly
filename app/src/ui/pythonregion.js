@@ -42,9 +42,16 @@ toggleIconsArr.forEach(x => {
 
 var streamToDisplay = ""
 const charactersToShow = 100;
+var currentlyDisplayedPort = ""
 
-window.api.robotCOMStream((_event, value) => {
-    streamToDisplay += value;
-    streamToDisplay = streamToDisplay.slice(-charactersToShow);
-    console.log(streamToDisplay);
+window.api.robotCOMStream((_event, rawObject) => {
+    if (rawObject.port == currentlyDisplayedPort) {
+        streamToDisplay += rawObject.data;
+        streamToDisplay = streamToDisplay.slice(-charactersToShow);
+        console.log(currentlyDisplayedPort);
+        console.log(streamToDisplay);   
+    } else {
+        currentlyDisplayedPort = rawObject.port;
+        streamToDisplay = "";
+    }
 });
