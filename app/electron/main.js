@@ -38,7 +38,7 @@ createWindow = () => {
   mainWindow.setMenu(null);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 }
 
 var currentlyConnectedPorts = [];
@@ -101,7 +101,6 @@ app.whenReady().then(() => {
             serialport.on('close', () => {
               currentlyConnectedPorts = currentlyConnectedPorts.filter(x => x !== currentPortPath);
               delete currentlyConnectedPortObjects[currentPortPath];
-              // currentlyConnectedPortObjects = currentlyConnectedPortObjects.filter(x => x !== serialport);
             })
           }
         } else {
