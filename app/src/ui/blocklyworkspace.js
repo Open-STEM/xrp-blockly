@@ -51,7 +51,7 @@ workspace.addChangeListener(myUpdateFunction);
 /* Code Cleaning and Formatting */
 function processCode(code) {
     // console.log("Processing Code");
-    code = "from WPILib import *\n\n" + code
+    code = "from WPILib.WPILib import *\n\n" + code
     // if (code.includes('encoded_motor')) {
     //     // console.log("Found encoded_motor");
     // }
