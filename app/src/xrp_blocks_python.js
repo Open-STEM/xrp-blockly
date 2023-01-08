@@ -83,6 +83,12 @@ Blockly.Python['xrp_getleftencoder'] = function (block) {
   return [code, Blockly.Python.ORDER_NONE];
 };
 
+Blockly.Python['xrp_encoder_counts'] = function (block) {
+  var ticks = block.getFieldValue('TICKS');
+  var code = `drivetrain._set_encoder_ticks_per_rev(${ticks})\n`;
+  return code;
+};
+
 Blockly.Python['xrp_sleep'] = function (block) {
   var number_time = block.getFieldValue('TIME');
   // TODO: Assemble Python into code variable.
