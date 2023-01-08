@@ -175,7 +175,7 @@ Blockly.Blocks['xrp_encoder_counts'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Set Encoder Tick Mode:")
-      .appendField(new Blockly.FieldDropdown([["Legacy", "drivetrain._LEGACY_TICKS_PER_REV"], ["New", "drivetrain._LEGACY_TICKS_PER_REV"]]), "TICKS")
+      .appendField(new Blockly.FieldDropdown([["Legacy", "drivetrain._LEGACY_TICKS_PER_REV"], ["New", "drivetrain._NEW_TICKS_PER_REV"]]), "TICKS")
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
