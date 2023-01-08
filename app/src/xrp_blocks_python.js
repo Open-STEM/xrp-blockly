@@ -61,9 +61,32 @@ Blockly.Python['xrp_seteffort'] = function (block) {
   return code;
 };
 
+Blockly.Python['xrp_setencoderpos'] = function (block) {
+  var value_l = Blockly.Python.valueToCode(block, 'LEFT', Blockly.Python.ORDER_ATOMIC);
+  var value_r = Blockly.Python.valueToCode(block, 'RIGHT', Blockly.Python.ORDER_ATOMIC);
+  var code = `drivetrain.set_encoder_position(${value_l}, ${value_r})\n`;
+  return code;
+};
+
 Blockly.Python['xrp_getsonardist'] = function (block) {
   var code = `sonar.distance`;
   return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['xrp_getrightencoder'] = function (block) {
+  var code = `drivetrain.get_right_encoder_position()`;
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['xrp_getleftencoder'] = function (block) {
+  var code = `drivetrain.get_left_encoder_position()`;
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['xrp_encoder_counts'] = function (block) {
+  var ticks = block.getFieldValue('TICKS');
+  var code = `drivetrain._set_encoder_ticks_per_rev(${ticks})\n`;
+  return code;
 };
 
 Blockly.Python['xrp_sleep'] = function (block) {
