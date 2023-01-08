@@ -119,10 +119,51 @@ Blockly.Blocks['xrp_seteffort'] = {
   }
 };
 
+Blockly.Blocks['xrp_setencoderpos'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Set Encoder Positions");
+    this.appendValueInput("LEFT")
+        .setCheck(null)
+        .appendField("L:");
+    this.appendValueInput("RIGHT")
+        .setCheck(null)
+        .appendField("R:");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(60);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['xrp_getsonardist'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("Sonar Distance");
+    this.setOutput(true, null);
+    this.setColour(60);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['xrp_getrightencoder'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Right Encoder");
+    this.setOutput(true, null);
+    this.setColour(60);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Blocks['xrp_getleftencoder'] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("Left Encoder");
     this.setOutput(true, null);
     this.setColour(60);
     this.setTooltip("");
