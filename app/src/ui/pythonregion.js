@@ -3,6 +3,8 @@ const toggleClosedDiv = document.getElementById("toggleClosed");
 
 const pythonArea = document.getElementById("textArea");
 const blocklyArea = document.getElementById("blocklyArea");
+const comTitle = document.getElementById("comport_title");
+const comData = document.getElementById("comport_data");
 
 
 toggleClosedDiv.addEventListener("click", () => {
@@ -38,4 +40,24 @@ toggleIconsArr.forEach(x => {
     el.onmouseout = () => {
         el.style.color = '';
     }
+});
+
+var streamToDisplay = ""
+const charactersToShow = 1000;
+var currentlyDisplayedPort = ""
+
+window.api.robotCOMStream((_event, rawObject) => {
+    if (rawObject.port == currentlyDisplayedPort) {
+        streamToDisplay += rawObject.data;
+        streamToDisplay = streamToDisplay.slice(-charactersToShow);
+        // console.log(currentlyDisplayedPort);
+        // console.log(streamToDisplay);   
+        comData.innerHTML = streamToDisplay;
+    } else {
+        currentlyDisplayedPort = rawObject.port;
+        streamToDisplay = "";
+        comTitle.innerHTML = currentlyDisplayedPort;
+        comData.innerHTML = streamToDisplay;
+    }
+
 });

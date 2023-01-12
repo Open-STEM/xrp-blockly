@@ -30,7 +30,8 @@
     "bootstrap": "^5.2.0",
     "drivelist": "^11.0.0",
     "electron-reloader": "^1.2.3",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "serialport": "^10.5.0"
   },
   "config": {
     "forge": {
