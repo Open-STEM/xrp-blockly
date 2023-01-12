@@ -61,9 +61,32 @@ Blockly.Python['xrp_seteffort'] = function (block) {
   return code;
 };
 
+Blockly.Python['xrp_setencoderpos'] = function (block) {
+  var value_l = Blockly.Python.valueToCode(block, 'LEFT', Blockly.Python.ORDER_ATOMIC);
+  var value_r = Blockly.Python.valueToCode(block, 'RIGHT', Blockly.Python.ORDER_ATOMIC);
+  var code = `drivetrain.set_encoder_position(${value_l}, ${value_r})\n`;
+  return code;
+};
+
 Blockly.Python['xrp_getsonardist'] = function (block) {
   var code = `sonar.distance`;
   return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['xrp_getrightencoder'] = function (block) {
+  var code = `drivetrain.get_right_encoder_position()`;
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['xrp_getleftencoder'] = function (block) {
+  var code = `drivetrain.get_left_encoder_position()`;
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Python['xrp_encoder_counts'] = function (block) {
+  var ticks = block.getFieldValue('TICKS');
+  var code = `drivetrain._set_encoder_ticks_per_rev(${ticks})\n`;
+  return code;
 };
 
 Blockly.Python['xrp_sleep'] = function (block) {
@@ -84,21 +107,21 @@ Blockly.Python['xrp_setefforts'] = function (block) {
 Blockly.Python['xrp_turn'] = function (block) {
   var value_angle = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = `drivetrain.go_turn(${value_angle})\n`;
+  var code = `drivetrain.turn(${value_angle})\n`;
   return code;
 };
 
 Blockly.Python['xrp_turn_effort'] = function (block) {
   var value_angle = Blockly.Python.valueToCode(block, 'angle', Blockly.Python.ORDER_ATOMIC);
   var value_effort = Blockly.Python.valueToCode(block, 'effort', Blockly.Python.ORDER_ATOMIC);
-  var code = `drivetrain.go_turn(${value_angle}, ${value_effort})\n`;
+  var code = `drivetrain.turn(${value_angle}, ${value_effort})\n`;
   return code;
 };
 
 Blockly.Python['xrp_straight'] = function (block) {
   var value_dist = Blockly.Python.valueToCode(block, 'dist', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = `drivetrain.go_straight(${value_dist})\n`;
+  var code = `drivetrain.straight(${value_dist})\n`;
   return code;
 };
 
@@ -106,7 +129,7 @@ Blockly.Python['xrp_straight_effort'] = function (block) {
   var value_dist = Blockly.Python.valueToCode(block, 'dist', Blockly.Python.ORDER_ATOMIC);
   var value_effort = Blockly.Python.valueToCode(block, 'effort', Blockly.Python.ORDER_ATOMIC);
   // TODO: Assemble Python into code variable.
-  var code = `drivetrain.go_straight(${value_dist}, ${value_effort})\n`;
+  var code = `drivetrain.straight(${value_dist}, ${value_effort})\n`;
   return code;
 };
 
@@ -143,14 +166,14 @@ Blockly.Python['xrp_servo_deg'] = function (block) {
 
 Blockly.Python['xrp_l_refl'] = function (block) {
   // TODO: Assemble Python into code variable.
-  var code = `reflectance.get_left_reflectance()`;
+  var code = `reflectance.get_left()`;
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };
 
 Blockly.Python['xrp_r_refl'] = function (block) {
   // TODO: Assemble Python into code variable.
-  var code = `reflectance.get_right_reflectance()`;
+  var code = `reflectance.get_right()`;
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.Python.ORDER_NONE];
 };

@@ -426,6 +426,23 @@
             <block type="xrp_l_refl"></block>
             <block type="xrp_r_refl"></block>
             <block type="xrp_getsonardist"></block>
+            <block type="xrp_setencoderpos">
+              <value name="LEFT">
+                <shadow type="math_number">
+                  <field name="NUM">0</field>
+                </shadow>
+              </value>
+              <value name="RIGHT">
+                <shadow type="math_number">
+                  <field name="NUM">0</field>
+                </shadow>
+              </value>
+            </block>
+            <block type="xrp_getleftencoder"></block>
+            <block type="xrp_getrightencoder"></block>
+            <block type="xrp_encoder_counts">
+              <field name="TICKS">drivetrain._LEGACY_TICKS_PER_REV</field>
+            </block>
           </category>
           <category name="Control Board" colour="#5C9AA6">
             <block type="xrp_led_br">
@@ -817,7 +834,7 @@
     <div class="row">
       <div class="col-8" id="blocklyArea">
         <div id="blocklyDiv"></div>
-        <p id="codeVersion">v0.0.2</p>
+        <p id="codeVersion">v0.0.4</p>
       </div>
       <div class="col-4">
         <div id="toggleOpen" class="toggleCode">
