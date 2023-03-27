@@ -136,7 +136,7 @@ Blockly.Python['xrp_straight_effort'] = function (block) {
 Blockly.Python['xrp_button_pressed'] = function (block) {
   var dropdown_pin = block.getFieldValue('PIN');
   var code = `buttons.is_${dropdown_pin}_pressed()`;
-  return code;
+  return [code, Blockly.Python.ORDER_NONE];
 };
 
 Blockly.Python['xrp_stop_motors'] = function (block) {
