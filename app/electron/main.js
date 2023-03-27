@@ -3,7 +3,7 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const drivelist = require('drivelist');
 const { SerialPort } = require('serialport');
 var AsyncPolling = require('async-polling');
