@@ -1,6 +1,6 @@
 const { dialog } = require('electron');
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const drivelist = require('drivelist');
 
 /* List of all APIS */
@@ -16,8 +16,8 @@ global.share.ipcMain.handle('open-file', handleOpenFile);
 async function handleSaveCode(event, req) {
 	const appState = JSON.parse(fs.readFileSync(path.join(__dirname, "../state.json")));
 	if (appState.fullPath != "") {
-	  let filePath = path.join(appState.fullPath, req.filename);
-	  fs.writeFileSync(filePath, req.content);
+		let filePath = path.join(appState.fullPath, req.filename);
+		fs.writeFileSync(filePath, req.content);
 		return {
 			status: 200,
 			payload: path.basename(filePath, path.extname(filePath)),
@@ -61,15 +61,16 @@ async function handleSaveAsCode(event, req) {
 };
 
 // Uploads Code to robot
-async function handleUploadCode (event, code) {
+async function handleUploadCode(event, code) {
 	try {
 		let drives = await drivelist.list();
-	
+
 		let first_bot = drives.find(x => x.description.includes('Maker Pi RP2040'));
 		let first_bot_drive = first_bot.mountpoints[0].path;
 		let output_filepath = path.join(first_bot_drive, 'code.py');
+		let initLib = initializeCodeLibrary(first_bot_drive)
 		fs.writeFileSync(output_filepath, code);
-		
+
 		return {
 			status: 201,
 			message: "Code Uploaded"
@@ -80,7 +81,31 @@ async function handleUploadCode (event, code) {
 			message: `Internal Error: ${e}`
 		};
 	}
+
 };
+
+
+function initializeCodeLibrary(fpath) {
+	try {
+		const wpilibLoc = path.join(__dirname, "../lib/WPILib");
+		let output_filepath = path.join(fpath, 'WPILib');
+		fs.pathExists(output_filepath).then(exists => {
+			if (exists) {
+				return true
+			} else {
+				fs.copy(wpilibLoc, output_filepath).then(() => {
+					return true
+				})
+					.catch(err => {
+						console.error(err)
+					})
+			}
+		}
+		);
+	} catch (e) {
+		return false;
+	}
+}
 
 // Opens File
 async function handleOpenFile(event, req) {
@@ -93,7 +118,7 @@ async function handleOpenFile(event, req) {
 
 	if (filePath) {
 		let inputFile = fs.readFileSync(filePath[0], { encoding: 'utf8' });
-		
+
 		return {
 			status: 200,
 			payload: {
