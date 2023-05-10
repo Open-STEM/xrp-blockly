@@ -2,6 +2,8 @@ const { dialog } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const drivelist = require('drivelist');
+const Micropython = require('micropython.js')
+const board = new Micropython()
 
 /* List of all APIS */
 global.share.ipcMain.handle('save-code', handleSaveCode);
@@ -63,17 +65,29 @@ async function handleSaveAsCode(event, req) {
 // Uploads Code to robot
 async function handleUploadCode (event, code) {
 	try {
-		let drives = await drivelist.list();
-	
-		let first_bot = drives.find(x => x.description.includes('Maker Pi RP2040'));
-		let first_bot_drive = first_bot.mountpoints[0].path;
-		let output_filepath = path.join(first_bot_drive, 'code.py');
-		fs.writeFileSync(output_filepath, code);
-		
-		return {
-			status: 201,
-			message: "Code Uploaded"
-		};
+		// let drives = await drivelist.list();
+		// let first_bot = drives.find(x => x.description.includes('Maker Pi RP2040'));
+		// let first_bot_drive = first_bot.mountpoints[0].path;
+		// let output_filepath = path.join(first_bot_drive, 'code.py');
+		// fs.writeFileSync(output_filepath, code);
+
+		// Save file locally instead of on bot and then upload it
+		let src_filepath = path.join(__dirname, "../botcode.py");
+		fs.writeFileSync(src_filepath, code);
+		board.open(path)
+		let successful = await board.fs_put(src_filepath, "botcode.py");
+
+		if (successful) {
+			return {
+				status: 201,
+				message: "Code Uploaded"
+			};
+		} else {
+			return {
+				status: 500,
+				message: "Error uploading file"
+			};
+		}
 	} catch (e) {
 		return {
 			status: 500,
